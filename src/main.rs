@@ -1,6 +1,7 @@
 use std::error::Error;
 use std::net::SocketAddr;
 
+use anyhow::anyhow;
 use axum::body::Body;
 use axum::extract::{Path, Query};
 use axum::http::StatusCode;
@@ -20,7 +21,6 @@ mod ical_parser;
 
 const REVERSE_PROXY_URL: &str = "https://moodle.hwr-berlin.de/fb2-stundenplan/download.php?doctype=.ics&url=./fb2-stundenplaene/";
 
-//informatik/semester3/kursa
 struct AppError(anyhow::Error);
 
 #[tokio::main]
@@ -47,12 +47,23 @@ async fn root(Path((study, semester, course, rregex)): Path<(String, String, Str
     let regex = &rregex[1..];
 
     let res = reqwest::get(REVERSE_PROXY_URL.to_owned() + &format!("{study}/{semester}/{course}")).await.unwrap();
+    let status = res.status();
     let body = res.bytes().await.unwrap();
     let mut res = UTF_8.decode_with_bom_removal(&body).0.to_string();
+    if !status.is_success() || res.contains(r#"alert("Fehlerhafter Pfad!");"#) {
+        return Err(anyhow!("proxy error. is your path correct?").into())
+    }
 
     if !regex.is_empty() {
-        let built_regex: Vec<Regex> = regex.split("/")
-            .filter_map(|r| RegexBuilder::new(&r).build().ok())
+        let regex_split: Vec<&str> = regex.split("/").collect();
+
+        if regex_split.len() >= 10 {
+            return Err(anyhow!("too many regex").into());
+        }
+
+        let built_regex: Vec<Regex> = regex_split
+            .iter()
+            .filter_map(|r| RegexBuilder::new(&r).size_limit(100000).build().ok())
             .collect();
         res = res.replace("\r", ""); // why? But okayyy
         let cal = ParsedCalendar::from(res.as_str());
@@ -87,7 +98,7 @@ async fn root(Path((study, semester, course, rregex)): Path<(String, String, Str
 
 impl IntoResponse for AppError {
     fn into_response(self) -> Response {
-        (StatusCode::INTERNAL_SERVER_ERROR, "app error").into_response()
+        (StatusCode::INTERNAL_SERVER_ERROR, format!("error: {}", &self.0.to_string())).into_response()
     }
 }
 
