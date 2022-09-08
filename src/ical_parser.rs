@@ -1,24 +1,23 @@
 use fancy_regex::{Captures, Regex};
 use lazy_static::lazy_static;
 
-const EVENT_REGEX: &str = r#"BEGIN:VEVENT\n(?:(.|\n)*?)\nSUMMARY:(?P<summary>(.|\n)*?)(?=\n[^\t])(?:(.|\n)*?)\nEND:VEVENT"#;
+const EVENT_REGEX: &str = r#"BEGIN:VEVENT\n(?:(?:.|\n)*?)\nSUMMARY:(?P<summary>(?:.|\n)*?)(?=\n[^\t])(?:(?:.|\n)*?)\nEND:VEVENT"#;
 
 lazy_static! {
     static ref COMPILED_REGEX: Regex = Regex::new(EVENT_REGEX).unwrap();
 }
 
 pub struct ParsedCalendar<'a> {
-    pub events: Vec<ParsedEvent<'a>>,
+    pub events: Vec<ParsedEvent>,
     pub raw: &'a str,
 }
 
 
-pub struct ParsedEvent<'a> {
+pub struct ParsedEvent {
     pub start: usize,
     pub end: usize,
-    pub summary: &'a str,
+    pub summary: String,
 }
-
 
 impl<'a> From<&'a str> for ParsedCalendar<'a> {
     fn from(s: &'a str) -> Self {
@@ -33,7 +32,7 @@ impl<'a> From<&'a str> for ParsedCalendar<'a> {
             events.push(ParsedEvent {
                 start: first.start(),
                 end: first.end(),
-                summary: summary.as_str(),
+                summary: summary.as_str().replace("\t", "").replace("\n", ""),
             });
         }
 

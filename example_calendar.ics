@@ -1,0 +1,1368 @@
+BEGIN:VCALENDAR
+PRODID:-//www.sked.de//EN
+X-SKED-VERSION-TERMINSYNC:3.0
+X-SKED-SYNC-DTSTART:20220905T000000
+X-SKED-SYNC-DTEND:20221114T000000
+X-SKED-LIZENZNEHMER:22
+X-SKED-RESSOURCE:12017
+VERSION:2.0
+BEGIN:VTIMEZONE
+TZID:Europe/Berlin
+BEGIN:DAYLIGHT
+TZNAME:CEST
+DTSTART:19960101T020000
+RRULE:FREQ=YEARLY;BYMONTH=3;BYDAY=-1SU
+TZOFFSETFROM:+0100
+TZOFFSETTO:+0200
+END:DAYLIGHT
+BEGIN:STANDARD
+TZNAME:CET
+DTSTART:19960101T020000
+RRULE:FREQ=YEARLY;BYMONTH=10;BYDAY=-1SU
+TZOFFSETFROM:+0200
+TZOFFSETTO:+0100
+END:STANDARD
+END:VTIMEZONE
+BEGIN:VEVENT
+DTSTAMP:20220907T201215Z
+TRANSP:OPAQUE
+SEQUENCE:0
+UID:sked.de1033518
+SUMMARY:Klausur\;IT1081-BWL\;Gatzer\;CL: 6B.452 (T)\;Nach- u. Wiederholun
+	gsklausur
+LOCATION:CL: 6B.452 (T)
+DESCRIPTION:Art: Klausur\nVeranstaltung: IT1081-BWL\nDozent: Gatzer\nRaum
+	: CL: 6B.452 (T)\nAnmerkung: Nach- u. Wiederholungsklausur\nPause: -\nVer
+	anstaltungsuntergruppe: -
+DTSTART;TZID=Europe/Berlin:20220905T090000
+DTEND;TZID=Europe/Berlin:20220905T113000
+X-SKED-OUTLOOKFARBINDEX:16
+PRIORITY:5
+CLASS:PUBLIC
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20220907T201215Z
+TRANSP:OPAQUE
+SEQUENCE:0
+UID:sked.de1031766
+SUMMARY:SU\;IT2091-Embedded Systems\;Buck\;Online
+LOCATION:
+DESCRIPTION:Art: SU\nVeranstaltung: IT2091-Embedded Systems\nDozent: Buck
+	\nRaum: -\nAnmerkung: Online\nPause: inkl. 15 min Pause\nVeranstaltungsun
+	tergruppe: -
+DTSTART;TZID=Europe/Berlin:20220905T160000
+DTEND;TZID=Europe/Berlin:20220905T191500
+PRIORITY:5
+CLASS:PUBLIC
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20220907T201215Z
+TRANSP:OPAQUE
+SEQUENCE:0
+UID:sked.de1033535
+SUMMARY:SU\;IT4111-IT und Gesellschaft\;Seemann\;CL: 6B.173 (T)\;
+LOCATION:CL: 6B.173 (T)
+DESCRIPTION:Art: SU\nVeranstaltung: IT4111-IT und Gesellschaft\nDozent: S
+	eemann\nRaum: CL: 6B.173 (T)\nAnmerkung: -\nPause: inkl. 15 min Pause\nVe
+	ranstaltungsuntergruppe: -
+DTSTART;TZID=Europe/Berlin:20220906T130000
+DTEND;TZID=Europe/Berlin:20220906T161500
+PRIORITY:5
+CLASS:PUBLIC
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20220907T201215Z
+TRANSP:OPAQUE
+SEQUENCE:0
+UID:sked.de1032045
+SUMMARY:SU\;IT2121-Betriebliche Standardsoftware\;Lange\, P.\;CL: 6B.052 
+	(IT-L)\;
+LOCATION:CL: 6B.052 (IT-L)
+DESCRIPTION:Art: SU\nVeranstaltung: IT2121-Betriebliche Standardsoftware\n
+	Dozent: Lange\, P.\nRaum: CL: 6B.052 (IT-L)\nAnmerkung: -\nPause: inkl. 1
+	5 min Pause\nVeranstaltungsuntergruppe: -
+DTSTART;TZID=Europe/Berlin:20220907T121500
+DTEND;TZID=Europe/Berlin:20220907T144500
+PRIORITY:5
+CLASS:PUBLIC
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20220907T201215Z
+TRANSP:OPAQUE
+SEQUENCE:0
+UID:sked.de1050507
+SUMMARY:PÜ\;IT2091-Labor Embedded Systems Gr. 1\;Buck\;CL: 6B.158 (E-L)\;
+LOCATION:CL: 6B.158 (E-L)
+DESCRIPTION:Art: PÜ\nVeranstaltung: IT2091-Labor Embedded Systems Gr. 1\n
+	Dozent: Buck\nRaum: CL: 6B.158 (E-L)\nAnmerkung: -\nPause: inkl. 15 min P
+	ause\nVeranstaltungsuntergruppe: -
+DTSTART;TZID=Europe/Berlin:20220907T160000
+DTEND;TZID=Europe/Berlin:20220907T191500
+PRIORITY:5
+CLASS:PUBLIC
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20220907T201215Z
+TRANSP:OPAQUE
+SEQUENCE:0
+UID:sked.de1040959
+SUMMARY:PCÜ\;IT2101-Labor SWE I: Gruppe 1\;Niedling\;CL: 6B.173 (T)\;
+LOCATION:CL: 6B.173 (T)
+DESCRIPTION:Art: PCÜ\nVeranstaltung: IT2101-Labor SWE I: Gruppe 1\nDozent
+	: Niedling\nRaum: CL: 6B.173 (T)\nAnmerkung: -\nPause: inkl. 15 min Pause
+	\nVeranstaltungsuntergruppe: -
+DTSTART;TZID=Europe/Berlin:20220908T093000
+DTEND;TZID=Europe/Berlin:20220908T121500
+PRIORITY:5
+CLASS:PUBLIC
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20220907T201215Z
+TRANSP:OPAQUE
+SEQUENCE:0
+UID:sked.de1040958
+SUMMARY:SU\;IT2101-Software-Engineering I\;Niedling\;CL: 6B.173 (T)\;
+LOCATION:CL: 6B.173 (T)
+DESCRIPTION:Art: SU\nVeranstaltung: IT2101-Software-Engineering I\nDozent
+	: Niedling\nRaum: CL: 6B.173 (T)\nAnmerkung: -\nPause: inkl. 15 min Pause
+	\nVeranstaltungsuntergruppe: -
+DTSTART;TZID=Europe/Berlin:20220908T130000
+DTEND;TZID=Europe/Berlin:20220908T154500
+PRIORITY:5
+CLASS:PUBLIC
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20220907T201215Z
+TRANSP:OPAQUE
+SEQUENCE:0
+UID:sked.de1040960
+SUMMARY:PCÜ\;IT2101-Labor SWE I: Gruppe 2\;Niedling\;CL: 6B.052 (IT-L)\;
+LOCATION:CL: 6B.052 (IT-L)
+DESCRIPTION:Art: PCÜ\nVeranstaltung: IT2101-Labor SWE I: Gruppe 2\nDozent
+	: Niedling\nRaum: CL: 6B.052 (IT-L)\nAnmerkung: -\nPause: inkl. 15 min Pa
+	use\nVeranstaltungsuntergruppe: -
+DTSTART;TZID=Europe/Berlin:20220908T160000
+DTEND;TZID=Europe/Berlin:20220908T184500
+PRIORITY:5
+CLASS:PUBLIC
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20220907T201215Z
+TRANSP:OPAQUE
+SEQUENCE:0
+UID:sked.de1031767
+SUMMARY:SU\;IT2091-Embedded Systems\;Buck\;Online
+LOCATION:
+DESCRIPTION:Art: SU\nVeranstaltung: IT2091-Embedded Systems\nDozent: Buck
+	\nRaum: -\nAnmerkung: Online\nPause: inkl. 15 min Pause\nVeranstaltungsun
+	tergruppe: -
+DTSTART;TZID=Europe/Berlin:20220912T160000
+DTEND;TZID=Europe/Berlin:20220912T191500
+PRIORITY:5
+CLASS:PUBLIC
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20220907T201215Z
+TRANSP:OPAQUE
+SEQUENCE:0
+UID:sked.de1033536
+SUMMARY:SU\;IT4111-IT und Gesellschaft\;Seemann\;CL: 6B.173 (T)\;
+LOCATION:CL: 6B.173 (T)
+DESCRIPTION:Art: SU\nVeranstaltung: IT4111-IT und Gesellschaft\nDozent: S
+	eemann\nRaum: CL: 6B.173 (T)\nAnmerkung: -\nPause: inkl. 15 min Pause\nVe
+	ranstaltungsuntergruppe: -
+DTSTART;TZID=Europe/Berlin:20220913T130000
+DTEND;TZID=Europe/Berlin:20220913T161500
+PRIORITY:5
+CLASS:PUBLIC
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20220907T201215Z
+TRANSP:OPAQUE
+SEQUENCE:0
+UID:sked.de1032059
+SUMMARY:SU\;IT2121-Betriebliche Standardsoftware\;Lange\, P.\;CL: 6B.052 
+	(IT-L)\;
+LOCATION:CL: 6B.052 (IT-L)
+DESCRIPTION:Art: SU\nVeranstaltung: IT2121-Betriebliche Standardsoftware\n
+	Dozent: Lange\, P.\nRaum: CL: 6B.052 (IT-L)\nAnmerkung: -\nPause: inkl. 1
+	5 min Pause\nVeranstaltungsuntergruppe: -
+DTSTART;TZID=Europe/Berlin:20220914T120000
+DTEND;TZID=Europe/Berlin:20220914T143000
+PRIORITY:5
+CLASS:PUBLIC
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20220907T201215Z
+TRANSP:OPAQUE
+SEQUENCE:0
+UID:sked.de1050508
+SUMMARY:PÜ\;IT2091-Labor Embedded Systems Gr. 2\;Buck\;CL: 6B.158 (E-L)\;
+LOCATION:CL: 6B.158 (E-L)
+DESCRIPTION:Art: PÜ\nVeranstaltung: IT2091-Labor Embedded Systems Gr. 2\n
+	Dozent: Buck\nRaum: CL: 6B.158 (E-L)\nAnmerkung: -\nPause: inkl. 15 min P
+	ause\nVeranstaltungsuntergruppe: -
+DTSTART;TZID=Europe/Berlin:20220914T160000
+DTEND;TZID=Europe/Berlin:20220914T191500
+PRIORITY:5
+CLASS:PUBLIC
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20220907T201215Z
+TRANSP:OPAQUE
+SEQUENCE:0
+UID:sked.de1033035
+SUMMARY:SU\;IT4111-IKT-Recht\;Loock\;CL: 6B.173 (T)\;
+LOCATION:CL: 6B.173 (T)
+DESCRIPTION:Art: SU\nVeranstaltung: IT4111-IKT-Recht\nDozent: Loock\nRaum
+	: CL: 6B.173 (T)\nAnmerkung: -\nPause: inkl. 30 min Pause\nVeranstaltungs
+	untergruppe: -
+DTSTART;TZID=Europe/Berlin:20220915T084500
+DTEND;TZID=Europe/Berlin:20220915T130000
+PRIORITY:5
+CLASS:PUBLIC
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20220907T201215Z
+TRANSP:OPAQUE
+SEQUENCE:0
+UID:sked.de1057623
+SUMMARY:PCÜ\;IT2101-Labor SWE I: Gruppe 1 + 2\;Niedling\;CL: 6B.052 (IT-L
+	)\, CL: 6B.352 (L)\;
+LOCATION:CL: 6B.052 (IT-L)\, CL: 6B.352 (L)
+DESCRIPTION:Art: PCÜ\nVeranstaltung: IT2101-Labor SWE I: Gruppe 1 + 2\nDo
+	zent: Niedling\nRaum: CL: 6B.052 (IT-L)\, CL: 6B.352 (L)\nAnmerkung: -\nP
+	ause: inkl. 15 min Pause\nVeranstaltungsuntergruppe: -
+DTSTART;TZID=Europe/Berlin:20220916T093000
+DTEND;TZID=Europe/Berlin:20220916T121500
+PRIORITY:5
+CLASS:PUBLIC
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20220907T201215Z
+TRANSP:OPAQUE
+SEQUENCE:0
+UID:sked.de1040963
+SUMMARY:SU\;IT2101-Software-Engineering I\;Niedling\;CL: 6B.173 (T)\;
+LOCATION:CL: 6B.173 (T)
+DESCRIPTION:Art: SU\nVeranstaltung: IT2101-Software-Engineering I\nDozent
+	: Niedling\nRaum: CL: 6B.173 (T)\nAnmerkung: -\nPause: inkl. 15 min Pause
+	\nVeranstaltungsuntergruppe: -
+DTSTART;TZID=Europe/Berlin:20220916T130000
+DTEND;TZID=Europe/Berlin:20220916T154500
+PRIORITY:5
+CLASS:PUBLIC
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20220907T201215Z
+TRANSP:OPAQUE
+SEQUENCE:0
+UID:sked.de1042548
+SUMMARY:PCÜ\;IT2101-Labor SWE I: Gruppe 1\;Kretzmer\;Online
+LOCATION:
+DESCRIPTION:Art: PCÜ\nVeranstaltung: IT2101-Labor SWE I: Gruppe 1\nDozent
+	: Kretzmer\nRaum: -\nAnmerkung: Online\nPause: inkl. 15 min Pause\nVerans
+	taltungsuntergruppe: -
+DTSTART;TZID=Europe/Berlin:20220919T121500
+DTEND;TZID=Europe/Berlin:20220919T153000
+PRIORITY:5
+CLASS:PUBLIC
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20220907T201215Z
+TRANSP:OPAQUE
+SEQUENCE:0
+UID:sked.de1031768
+SUMMARY:SU\;IT2091-Embedded Systems\;Buck\;Online
+LOCATION:
+DESCRIPTION:Art: SU\nVeranstaltung: IT2091-Embedded Systems\nDozent: Buck
+	\nRaum: -\nAnmerkung: Online\nPause: inkl. 15 min Pause\nVeranstaltungsun
+	tergruppe: -
+DTSTART;TZID=Europe/Berlin:20220919T160000
+DTEND;TZID=Europe/Berlin:20220919T191500
+PRIORITY:5
+CLASS:PUBLIC
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20220907T201215Z
+TRANSP:OPAQUE
+SEQUENCE:0
+UID:sked.de1033037
+SUMMARY:SU\;IT4111-IKT-Recht\;Loock\;CL: 6B.173 (T)\;
+LOCATION:CL: 6B.173 (T)
+DESCRIPTION:Art: SU\nVeranstaltung: IT4111-IKT-Recht\nDozent: Loock\nRaum
+	: CL: 6B.173 (T)\nAnmerkung: -\nPause: inkl. 30 min Pause\nVeranstaltungs
+	untergruppe: -
+DTSTART;TZID=Europe/Berlin:20220920T104500
+DTEND;TZID=Europe/Berlin:20220920T150000
+PRIORITY:5
+CLASS:PUBLIC
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20220907T201215Z
+TRANSP:OPAQUE
+SEQUENCE:0
+UID:sked.de1031785
+SUMMARY:PÜ\;IT2091-Labor Embedded Systems\;Buck\;CL: 6B.158 (E-L)\;Auswei
+	chtermin
+LOCATION:CL: 6B.158 (E-L)
+DESCRIPTION:Art: PÜ\nVeranstaltung: IT2091-Labor Embedded Systems\nDozent
+	: Buck\nRaum: CL: 6B.158 (E-L)\nAnmerkung: Ausweichtermin\nPause: inkl. 1
+	5 min Pause\nVeranstaltungsuntergruppe: -
+DTSTART;TZID=Europe/Berlin:20220920T160000
+DTEND;TZID=Europe/Berlin:20220920T191500
+PRIORITY:5
+CLASS:PUBLIC
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20220907T201215Z
+TRANSP:OPAQUE
+SEQUENCE:0
+UID:sked.de1032060
+SUMMARY:SU\;IT2121-Betriebliche Standardsoftware\;Lange\, P.\;CL: 6B.052 
+	(IT-L)\;
+LOCATION:CL: 6B.052 (IT-L)
+DESCRIPTION:Art: SU\nVeranstaltung: IT2121-Betriebliche Standardsoftware\n
+	Dozent: Lange\, P.\nRaum: CL: 6B.052 (IT-L)\nAnmerkung: -\nPause: inkl. 1
+	5 min Pause\nVeranstaltungsuntergruppe: -
+DTSTART;TZID=Europe/Berlin:20220921T084500
+DTEND;TZID=Europe/Berlin:20220921T111500
+PRIORITY:5
+CLASS:PUBLIC
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20220907T201215Z
+TRANSP:OPAQUE
+SEQUENCE:0
+UID:sked.de1033537
+SUMMARY:SU\;IT4111-IT und Gesellschaft\;Seemann\;CL: 6B.173 (T)\;
+LOCATION:CL: 6B.173 (T)
+DESCRIPTION:Art: SU\nVeranstaltung: IT4111-IT und Gesellschaft\nDozent: S
+	eemann\nRaum: CL: 6B.173 (T)\nAnmerkung: -\nPause: inkl. 15 min Pause\nVe
+	ranstaltungsuntergruppe: -
+DTSTART;TZID=Europe/Berlin:20220921T121500
+DTEND;TZID=Europe/Berlin:20220921T153000
+PRIORITY:5
+CLASS:PUBLIC
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20220907T201215Z
+TRANSP:OPAQUE
+SEQUENCE:0
+UID:sked.de1044680
+SUMMARY:SU\;Englisch\;Munby\;CL: 6B.450 (T)\;
+LOCATION:CL: 6B.450 (T)
+DESCRIPTION:Art: SU\nVeranstaltung: Englisch\nDozent: Munby\nRaum: CL: 6B
+	.450 (T)\nAnmerkung: -\nPause: -\nVeranstaltungsuntergruppe: -
+DTSTART;TZID=Europe/Berlin:20220921T154500
+DTEND;TZID=Europe/Berlin:20220921T171500
+PRIORITY:5
+CLASS:PUBLIC
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20220907T201215Z
+TRANSP:OPAQUE
+SEQUENCE:0
+UID:sked.de1040965
+SUMMARY:PCÜ\;IT2101-Labor SWE I: Gruppe 1\;Niedling\;CL: 6B.052 (IT-L)\;
+LOCATION:CL: 6B.052 (IT-L)
+DESCRIPTION:Art: PCÜ\nVeranstaltung: IT2101-Labor SWE I: Gruppe 1\nDozent
+	: Niedling\nRaum: CL: 6B.052 (IT-L)\nAnmerkung: -\nPause: inkl. 15 min Pa
+	use\nVeranstaltungsuntergruppe: -
+DTSTART;TZID=Europe/Berlin:20220922T093000
+DTEND;TZID=Europe/Berlin:20220922T121500
+PRIORITY:5
+CLASS:PUBLIC
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20220907T201215Z
+TRANSP:OPAQUE
+SEQUENCE:0
+UID:sked.de1040964
+SUMMARY:SU\;IT2101-Software-Engineering I\;Niedling\;CL: 6B.173 (T)\;
+LOCATION:CL: 6B.173 (T)
+DESCRIPTION:Art: SU\nVeranstaltung: IT2101-Software-Engineering I\nDozent
+	: Niedling\nRaum: CL: 6B.173 (T)\nAnmerkung: -\nPause: inkl. 15 min Pause
+	\nVeranstaltungsuntergruppe: -
+DTSTART;TZID=Europe/Berlin:20220922T130000
+DTEND;TZID=Europe/Berlin:20220922T154500
+PRIORITY:5
+CLASS:PUBLIC
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20220907T201215Z
+TRANSP:OPAQUE
+SEQUENCE:0
+UID:sked.de1040966
+SUMMARY:PCÜ\;IT2101-Labor SWE I: Gruppe 2\;Niedling\;CL: 6B.052 (IT-L)\;
+LOCATION:CL: 6B.052 (IT-L)
+DESCRIPTION:Art: PCÜ\nVeranstaltung: IT2101-Labor SWE I: Gruppe 2\nDozent
+	: Niedling\nRaum: CL: 6B.052 (IT-L)\nAnmerkung: -\nPause: inkl. 15 min Pa
+	use\nVeranstaltungsuntergruppe: -
+DTSTART;TZID=Europe/Berlin:20220922T160000
+DTEND;TZID=Europe/Berlin:20220922T184500
+PRIORITY:5
+CLASS:PUBLIC
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20220907T201215Z
+TRANSP:OPAQUE
+SEQUENCE:0
+UID:sked.de1042553
+SUMMARY:PCÜ\;IT2101-Labor SWE I: Gruppe 2\;Kretzmer\;Online
+LOCATION:
+DESCRIPTION:Art: PCÜ\nVeranstaltung: IT2101-Labor SWE I: Gruppe 2\nDozent
+	: Kretzmer\nRaum: -\nAnmerkung: Online\nPause: inkl. 15 min Pause\nVerans
+	taltungsuntergruppe: -
+DTSTART;TZID=Europe/Berlin:20220923T084500
+DTEND;TZID=Europe/Berlin:20220923T120000
+PRIORITY:5
+CLASS:PUBLIC
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20220907T201215Z
+TRANSP:OPAQUE
+SEQUENCE:0
+UID:sked.de1031769
+SUMMARY:SU\;IT2091-Embedded Systems\;Buck\;Online
+LOCATION:
+DESCRIPTION:Art: SU\nVeranstaltung: IT2091-Embedded Systems\nDozent: Buck
+	\nRaum: -\nAnmerkung: Online\nPause: inkl. 15 min Pause\nVeranstaltungsun
+	tergruppe: -
+DTSTART;TZID=Europe/Berlin:20220926T160000
+DTEND;TZID=Europe/Berlin:20220926T191500
+PRIORITY:5
+CLASS:PUBLIC
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20220907T201215Z
+TRANSP:OPAQUE
+SEQUENCE:0
+UID:sked.de1033538
+SUMMARY:SU\;IT4111-IT und Gesellschaft\;Seemann\;CL: 6B.173 (T)\;
+LOCATION:CL: 6B.173 (T)
+DESCRIPTION:Art: SU\nVeranstaltung: IT4111-IT und Gesellschaft\nDozent: S
+	eemann\nRaum: CL: 6B.173 (T)\nAnmerkung: -\nPause: inkl. 15 min Pause\nVe
+	ranstaltungsuntergruppe: -
+DTSTART;TZID=Europe/Berlin:20220927T130000
+DTEND;TZID=Europe/Berlin:20220927T161500
+PRIORITY:5
+CLASS:PUBLIC
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20220907T201215Z
+TRANSP:OPAQUE
+SEQUENCE:0
+UID:sked.de1032061
+SUMMARY:SU\;IT2121-Betriebliche Standardsoftware\;Lange\, P.\;CL: 6B.052 
+	(IT-L)\;
+LOCATION:CL: 6B.052 (IT-L)
+DESCRIPTION:Art: SU\nVeranstaltung: IT2121-Betriebliche Standardsoftware\n
+	Dozent: Lange\, P.\nRaum: CL: 6B.052 (IT-L)\nAnmerkung: -\nPause: inkl. 1
+	5 min Pause\nVeranstaltungsuntergruppe: -
+DTSTART;TZID=Europe/Berlin:20220928T084500
+DTEND;TZID=Europe/Berlin:20220928T111500
+PRIORITY:5
+CLASS:PUBLIC
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20220907T201215Z
+TRANSP:OPAQUE
+SEQUENCE:0
+UID:sked.de1031792
+SUMMARY:PÜ\;IT2091-Labor Embedded Systems Gr. 1\;Buck\;CL: 6B.158 (E-L)\;
+LOCATION:CL: 6B.158 (E-L)
+DESCRIPTION:Art: PÜ\nVeranstaltung: IT2091-Labor Embedded Systems Gr. 1\n
+	Dozent: Buck\nRaum: CL: 6B.158 (E-L)\nAnmerkung: -\nPause: inkl. 15 min P
+	ause\nVeranstaltungsuntergruppe: -
+DTSTART;TZID=Europe/Berlin:20220928T160000
+DTEND;TZID=Europe/Berlin:20220928T191500
+PRIORITY:5
+CLASS:PUBLIC
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20220907T201215Z
+TRANSP:OPAQUE
+SEQUENCE:0
+UID:sked.de1033038
+SUMMARY:SU\;IT4111-IKT-Recht\;Loock\;CL: 6B.173 (T)\;
+LOCATION:CL: 6B.173 (T)
+DESCRIPTION:Art: SU\nVeranstaltung: IT4111-IKT-Recht\nDozent: Loock\nRaum
+	: CL: 6B.173 (T)\nAnmerkung: -\nPause: inkl. 30 min Pause\nVeranstaltungs
+	untergruppe: -
+DTSTART;TZID=Europe/Berlin:20220929T084500
+DTEND;TZID=Europe/Berlin:20220929T130000
+PRIORITY:5
+CLASS:PUBLIC
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20220907T201215Z
+TRANSP:OPAQUE
+SEQUENCE:0
+UID:sked.de1044681
+SUMMARY:SU\;Englisch\;Munby\;CL: 6B.450 (T)\;
+LOCATION:CL: 6B.450 (T)
+DESCRIPTION:Art: SU\nVeranstaltung: Englisch\nDozent: Munby\nRaum: CL: 6B
+	.450 (T)\nAnmerkung: -\nPause: -\nVeranstaltungsuntergruppe: -
+DTSTART;TZID=Europe/Berlin:20220929T163000
+DTEND;TZID=Europe/Berlin:20220929T180000
+PRIORITY:5
+CLASS:PUBLIC
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20220907T201215Z
+TRANSP:OPAQUE
+SEQUENCE:0
+UID:sked.de1040967
+SUMMARY:PCÜ\;IT2101-Labor SWE I: Gruppe 2\;Niedling\;CL: 6B.052 (IT-L)\;
+LOCATION:CL: 6B.052 (IT-L)
+DESCRIPTION:Art: PCÜ\nVeranstaltung: IT2101-Labor SWE I: Gruppe 2\nDozent
+	: Niedling\nRaum: CL: 6B.052 (IT-L)\nAnmerkung: -\nPause: inkl. 15 min Pa
+	use\nVeranstaltungsuntergruppe: -
+DTSTART;TZID=Europe/Berlin:20220930T093000
+DTEND;TZID=Europe/Berlin:20220930T121500
+PRIORITY:5
+CLASS:PUBLIC
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20220907T201215Z
+TRANSP:OPAQUE
+SEQUENCE:0
+UID:sked.de1040969
+SUMMARY:SU\;IT2101-Software-Engineering I\;Niedling\;CL: 6B.173 (T)\;
+LOCATION:CL: 6B.173 (T)
+DESCRIPTION:Art: SU\nVeranstaltung: IT2101-Software-Engineering I\nDozent
+	: Niedling\nRaum: CL: 6B.173 (T)\nAnmerkung: -\nPause: inkl. 15 min Pause
+	\nVeranstaltungsuntergruppe: -
+DTSTART;TZID=Europe/Berlin:20220930T130000
+DTEND;TZID=Europe/Berlin:20220930T154500
+PRIORITY:5
+CLASS:PUBLIC
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20220907T201215Z
+TRANSP:OPAQUE
+SEQUENCE:0
+UID:sked.de1040968
+SUMMARY:PCÜ\;IT2101-Labor SWE I: Gruppe 1\;Niedling\;CL: 6B.052 (IT-L)\;
+LOCATION:CL: 6B.052 (IT-L)
+DESCRIPTION:Art: PCÜ\nVeranstaltung: IT2101-Labor SWE I: Gruppe 1\nDozent
+	: Niedling\nRaum: CL: 6B.052 (IT-L)\nAnmerkung: -\nPause: inkl. 15 min Pa
+	use\nVeranstaltungsuntergruppe: -
+DTSTART;TZID=Europe/Berlin:20220930T160000
+DTEND;TZID=Europe/Berlin:20220930T184500
+PRIORITY:5
+CLASS:PUBLIC
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20220907T201215Z
+TRANSP:OPAQUE
+SEQUENCE:0
+UID:sked.de1032062
+SUMMARY:SU\;IT2121-Betriebliche Standardsoftware\;Lange\, P.\;CL: 6B.052 
+	(IT-L)\;
+LOCATION:CL: 6B.052 (IT-L)
+DESCRIPTION:Art: SU\nVeranstaltung: IT2121-Betriebliche Standardsoftware\n
+	Dozent: Lange\, P.\nRaum: CL: 6B.052 (IT-L)\nAnmerkung: -\nPause: inkl. 1
+	5 min Pause\nVeranstaltungsuntergruppe: -
+DTSTART;TZID=Europe/Berlin:20221004T090000
+DTEND;TZID=Europe/Berlin:20221004T113000
+PRIORITY:5
+CLASS:PUBLIC
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20220907T201215Z
+TRANSP:OPAQUE
+SEQUENCE:0
+UID:sked.de1033539
+SUMMARY:SU\;IT4111-IT und Gesellschaft\;Seemann\;CL: 6B.173 (T)\;
+LOCATION:CL: 6B.173 (T)
+DESCRIPTION:Art: SU\nVeranstaltung: IT4111-IT und Gesellschaft\nDozent: S
+	eemann\nRaum: CL: 6B.173 (T)\nAnmerkung: -\nPause: inkl. 15 min Pause\nVe
+	ranstaltungsuntergruppe: -
+DTSTART;TZID=Europe/Berlin:20221004T123000
+DTEND;TZID=Europe/Berlin:20221004T154500
+PRIORITY:5
+CLASS:PUBLIC
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20220907T201215Z
+TRANSP:OPAQUE
+SEQUENCE:0
+UID:sked.de1040972
+SUMMARY:PCÜ\;IT2101-Labor SWE I: Gruppe 2\;Niedling\;CL: 6B.052 (IT-L)\;
+LOCATION:CL: 6B.052 (IT-L)
+DESCRIPTION:Art: PCÜ\nVeranstaltung: IT2101-Labor SWE I: Gruppe 2\nDozent
+	: Niedling\nRaum: CL: 6B.052 (IT-L)\nAnmerkung: -\nPause: inkl. 15 min Pa
+	use\nVeranstaltungsuntergruppe: -
+DTSTART;TZID=Europe/Berlin:20221005T093000
+DTEND;TZID=Europe/Berlin:20221005T121500
+PRIORITY:5
+CLASS:PUBLIC
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20220907T201215Z
+TRANSP:OPAQUE
+SEQUENCE:0
+UID:sked.de1040970
+SUMMARY:SU\;IT2101-Software-Engineering I\;Niedling\;CL: 6B.173 (T)\;
+LOCATION:CL: 6B.173 (T)
+DESCRIPTION:Art: SU\nVeranstaltung: IT2101-Software-Engineering I\nDozent
+	: Niedling\nRaum: CL: 6B.173 (T)\nAnmerkung: -\nPause: inkl. 15 min Pause
+	\nVeranstaltungsuntergruppe: -
+DTSTART;TZID=Europe/Berlin:20221005T130000
+DTEND;TZID=Europe/Berlin:20221005T154500
+PRIORITY:5
+CLASS:PUBLIC
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20220907T201215Z
+TRANSP:OPAQUE
+SEQUENCE:0
+UID:sked.de1040971
+SUMMARY:PCÜ\;IT2101-Labor SWE I: Gruppe 1\;Niedling\;CL: 6B.052 (IT-L)\;
+LOCATION:CL: 6B.052 (IT-L)
+DESCRIPTION:Art: PCÜ\nVeranstaltung: IT2101-Labor SWE I: Gruppe 1\nDozent
+	: Niedling\nRaum: CL: 6B.052 (IT-L)\nAnmerkung: -\nPause: inkl. 15 min Pa
+	use\nVeranstaltungsuntergruppe: -
+DTSTART;TZID=Europe/Berlin:20221005T160000
+DTEND;TZID=Europe/Berlin:20221005T184500
+PRIORITY:5
+CLASS:PUBLIC
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20220907T201215Z
+TRANSP:OPAQUE
+SEQUENCE:0
+UID:sked.de1031796
+SUMMARY:PÜ\;IT2091-Labor Embedded Systems Gr. 2\;Buck\;CL: 6B.158 (E-L)\;
+LOCATION:CL: 6B.158 (E-L)
+DESCRIPTION:Art: PÜ\nVeranstaltung: IT2091-Labor Embedded Systems Gr. 2\n
+	Dozent: Buck\nRaum: CL: 6B.158 (E-L)\nAnmerkung: -\nPause: inkl. 15 min P
+	ause\nVeranstaltungsuntergruppe: -
+DTSTART;TZID=Europe/Berlin:20221005T160000
+DTEND;TZID=Europe/Berlin:20221005T191500
+PRIORITY:5
+CLASS:PUBLIC
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20220907T201215Z
+TRANSP:OPAQUE
+SEQUENCE:0
+UID:sked.de1033041
+SUMMARY:SU\;IT4111-IKT-Recht\;Loock\;CL: 6B.173 (T)\;
+LOCATION:CL: 6B.173 (T)
+DESCRIPTION:Art: SU\nVeranstaltung: IT4111-IKT-Recht\nDozent: Loock\nRaum
+	: CL: 6B.173 (T)\nAnmerkung: -\nPause: inkl. 30 min Pause\nVeranstaltungs
+	untergruppe: -
+DTSTART;TZID=Europe/Berlin:20221006T090000
+DTEND;TZID=Europe/Berlin:20221006T131500
+PRIORITY:5
+CLASS:PUBLIC
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20220907T201215Z
+TRANSP:OPAQUE
+SEQUENCE:0
+UID:sked.de1033051
+SUMMARY:SU\;IT2091-Embedded Systems\;Buck\;Online
+LOCATION:
+DESCRIPTION:Art: SU\nVeranstaltung: IT2091-Embedded Systems\nDozent: Buck
+	\nRaum: -\nAnmerkung: Online\nPause: inkl. 15 min Pause\nVeranstaltungsun
+	tergruppe: -
+DTSTART;TZID=Europe/Berlin:20221006T160000
+DTEND;TZID=Europe/Berlin:20221006T191500
+PRIORITY:5
+CLASS:PUBLIC
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20220907T201215Z
+TRANSP:OPAQUE
+SEQUENCE:0
+UID:sked.de1032281
+SUMMARY:SU\;IT2121-Aufbau und Struktur von Rechenanlagen\;Thomas\;CL: 6B.
+	052 (IT-L)\;
+LOCATION:CL: 6B.052 (IT-L)
+DESCRIPTION:Art: SU\nVeranstaltung: IT2121-Aufbau und Struktur von Rechen
+	anlagen\nDozent: Thomas\nRaum: CL: 6B.052 (IT-L)\nAnmerkung: -\nPause: in
+	kl. 30 min Pause\nVeranstaltungsuntergruppe: -
+DTSTART;TZID=Europe/Berlin:20221007T130000
+DTEND;TZID=Europe/Berlin:20221007T180000
+PRIORITY:5
+CLASS:PUBLIC
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20220907T201215Z
+TRANSP:OPAQUE
+SEQUENCE:0
+UID:sked.de1042549
+SUMMARY:PCÜ\;IT2101-Labor SWE I: Gruppe 1\;Kretzmer\;Online
+LOCATION:
+DESCRIPTION:Art: PCÜ\nVeranstaltung: IT2101-Labor SWE I: Gruppe 1\nDozent
+	: Kretzmer\nRaum: -\nAnmerkung: Online\nPause: inkl. 15 min Pause\nVerans
+	taltungsuntergruppe: -
+DTSTART;TZID=Europe/Berlin:20221010T081500
+DTEND;TZID=Europe/Berlin:20221010T113000
+PRIORITY:5
+CLASS:PUBLIC
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20220907T201215Z
+TRANSP:OPAQUE
+SEQUENCE:0
+UID:sked.de1042552
+SUMMARY:PCÜ\;IT2101-Labor SWE I: Gruppe 2\;Kretzmer\;Online
+LOCATION:
+DESCRIPTION:Art: PCÜ\nVeranstaltung: IT2101-Labor SWE I: Gruppe 2\nDozent
+	: Kretzmer\nRaum: -\nAnmerkung: Online\nPause: inkl. 15 min Pause\nVerans
+	taltungsuntergruppe: -
+DTSTART;TZID=Europe/Berlin:20221010T121500
+DTEND;TZID=Europe/Berlin:20221010T153000
+PRIORITY:5
+CLASS:PUBLIC
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20220907T201215Z
+TRANSP:OPAQUE
+SEQUENCE:0
+UID:sked.de1031770
+SUMMARY:SU\;IT2091-Embedded Systems\;Buck\;Online
+LOCATION:
+DESCRIPTION:Art: SU\nVeranstaltung: IT2091-Embedded Systems\nDozent: Buck
+	\nRaum: -\nAnmerkung: Online\nPause: inkl. 15 min Pause\nVeranstaltungsun
+	tergruppe: -
+DTSTART;TZID=Europe/Berlin:20221010T160000
+DTEND;TZID=Europe/Berlin:20221010T191500
+PRIORITY:5
+CLASS:PUBLIC
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20220907T201215Z
+TRANSP:OPAQUE
+SEQUENCE:0
+UID:sked.de1032063
+SUMMARY:SU\;IT2121-Betriebliche Standardsoftware\;Lange\, P.\;CL: 6B.153 
+	(L)\;
+LOCATION:CL: 6B.153 (L)
+DESCRIPTION:Art: SU\nVeranstaltung: IT2121-Betriebliche Standardsoftware\n
+	Dozent: Lange\, P.\nRaum: CL: 6B.153 (L)\nAnmerkung: -\nPause: inkl. 15 m
+	in Pause\nVeranstaltungsuntergruppe: -
+DTSTART;TZID=Europe/Berlin:20221011T121500
+DTEND;TZID=Europe/Berlin:20221011T144500
+PRIORITY:5
+CLASS:PUBLIC
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20220907T201215Z
+TRANSP:OPAQUE
+SEQUENCE:0
+UID:sked.de1050506
+SUMMARY:PÜ\;IT2091-Labor Embedded Systems Gr. 1\;Buck\;CL: 6B.158 (E-L)\;
+LOCATION:CL: 6B.158 (E-L)
+DESCRIPTION:Art: PÜ\nVeranstaltung: IT2091-Labor Embedded Systems Gr. 1\n
+	Dozent: Buck\nRaum: CL: 6B.158 (E-L)\nAnmerkung: -\nPause: inkl. 15 min P
+	ause\nVeranstaltungsuntergruppe: -
+DTSTART;TZID=Europe/Berlin:20221011T160000
+DTEND;TZID=Europe/Berlin:20221011T191500
+PRIORITY:5
+CLASS:PUBLIC
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20220907T201215Z
+TRANSP:OPAQUE
+SEQUENCE:0
+UID:sked.de1044665
+SUMMARY:SU\;Englisch\;Munby\;CL: 6B.450 (T)\;
+LOCATION:CL: 6B.450 (T)
+DESCRIPTION:Art: SU\nVeranstaltung: Englisch\nDozent: Munby\nRaum: CL: 6B
+	.450 (T)\nAnmerkung: -\nPause: inkl. 15 min Pause\nVeranstaltungsuntergru
+	ppe: -
+DTSTART;TZID=Europe/Berlin:20221012T090000
+DTEND;TZID=Europe/Berlin:20221012T121500
+PRIORITY:5
+CLASS:PUBLIC
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20220907T201215Z
+TRANSP:OPAQUE
+SEQUENCE:0
+UID:sked.de1033540
+SUMMARY:SU\;IT4111-IT und Gesellschaft\;Seemann\;CL: 6B.173 (T)\;
+LOCATION:CL: 6B.173 (T)
+DESCRIPTION:Art: SU\nVeranstaltung: IT4111-IT und Gesellschaft\nDozent: S
+	eemann\nRaum: CL: 6B.173 (T)\nAnmerkung: -\nPause: inkl. 15 min Pause\nVe
+	ranstaltungsuntergruppe: -
+DTSTART;TZID=Europe/Berlin:20221012T130000
+DTEND;TZID=Europe/Berlin:20221012T161500
+PRIORITY:5
+CLASS:PUBLIC
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20220907T201215Z
+TRANSP:OPAQUE
+SEQUENCE:0
+UID:sked.de1040973
+SUMMARY:PCÜ\;IT2101-Labor SWE I: Gruppe 2\;Niedling\;CL: 6B.052 (IT-L)\;
+LOCATION:CL: 6B.052 (IT-L)
+DESCRIPTION:Art: PCÜ\nVeranstaltung: IT2101-Labor SWE I: Gruppe 2\nDozent
+	: Niedling\nRaum: CL: 6B.052 (IT-L)\nAnmerkung: -\nPause: inkl. 15 min Pa
+	use\nVeranstaltungsuntergruppe: -
+DTSTART;TZID=Europe/Berlin:20221013T093000
+DTEND;TZID=Europe/Berlin:20221013T121500
+PRIORITY:5
+CLASS:PUBLIC
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20220907T201215Z
+TRANSP:OPAQUE
+SEQUENCE:0
+UID:sked.de1040975
+SUMMARY:SU\;IT2101-Software-Engineering I\;Niedling\;CL: 6B.173 (T)\;
+LOCATION:CL: 6B.173 (T)
+DESCRIPTION:Art: SU\nVeranstaltung: IT2101-Software-Engineering I\nDozent
+	: Niedling\nRaum: CL: 6B.173 (T)\nAnmerkung: -\nPause: inkl. 15 min Pause
+	\nVeranstaltungsuntergruppe: -
+DTSTART;TZID=Europe/Berlin:20221013T130000
+DTEND;TZID=Europe/Berlin:20221013T154500
+PRIORITY:5
+CLASS:PUBLIC
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20220907T201215Z
+TRANSP:OPAQUE
+SEQUENCE:0
+UID:sked.de1040974
+SUMMARY:PCÜ\;IT2101-Labor SWE I: Gruppe 1\;Niedling\;CL: 6B.052 (IT-L)\;
+LOCATION:CL: 6B.052 (IT-L)
+DESCRIPTION:Art: PCÜ\nVeranstaltung: IT2101-Labor SWE I: Gruppe 1\nDozent
+	: Niedling\nRaum: CL: 6B.052 (IT-L)\nAnmerkung: -\nPause: inkl. 15 min Pa
+	use\nVeranstaltungsuntergruppe: -
+DTSTART;TZID=Europe/Berlin:20221013T160000
+DTEND;TZID=Europe/Berlin:20221013T184500
+PRIORITY:5
+CLASS:PUBLIC
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20220907T201215Z
+TRANSP:OPAQUE
+SEQUENCE:0
+UID:sked.de1032282
+SUMMARY:SU\;IT2121-Aufbau und Struktur von Rechenanlagen\;Thomas\;CL: 6B.
+	052 (IT-L)\;
+LOCATION:CL: 6B.052 (IT-L)
+DESCRIPTION:Art: SU\nVeranstaltung: IT2121-Aufbau und Struktur von Rechen
+	anlagen\nDozent: Thomas\nRaum: CL: 6B.052 (IT-L)\nAnmerkung: -\nPause: in
+	kl. 30 min Pause\nVeranstaltungsuntergruppe: -
+DTSTART;TZID=Europe/Berlin:20221014T130000
+DTEND;TZID=Europe/Berlin:20221014T180000
+PRIORITY:5
+CLASS:PUBLIC
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20220907T201215Z
+TRANSP:OPAQUE
+SEQUENCE:0
+UID:sked.de1044666
+SUMMARY:SU\;Englisch\;Munby\;CL: 6B.450 (T)\;
+LOCATION:CL: 6B.450 (T)
+DESCRIPTION:Art: SU\nVeranstaltung: Englisch\nDozent: Munby\nRaum: CL: 6B
+	.450 (T)\nAnmerkung: -\nPause: inkl. 15 min Pause\nVeranstaltungsuntergru
+	ppe: -
+DTSTART;TZID=Europe/Berlin:20221017T104500
+DTEND;TZID=Europe/Berlin:20221017T140000
+PRIORITY:5
+CLASS:PUBLIC
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20220907T201215Z
+TRANSP:OPAQUE
+SEQUENCE:0
+UID:sked.de1031771
+SUMMARY:SU\;IT2091-Embedded Systems\;Buck\;Online
+LOCATION:
+DESCRIPTION:Art: SU\nVeranstaltung: IT2091-Embedded Systems\nDozent: Buck
+	\nRaum: -\nAnmerkung: Online\nPause: inkl. 15 min Pause\nVeranstaltungsun
+	tergruppe: -
+DTSTART;TZID=Europe/Berlin:20221017T160000
+DTEND;TZID=Europe/Berlin:20221017T191500
+PRIORITY:5
+CLASS:PUBLIC
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20220907T201215Z
+TRANSP:OPAQUE
+SEQUENCE:0
+UID:sked.de1032064
+SUMMARY:SU\;IT2121-Betriebliche Standardsoftware\;Lange\, P.\;CL: 6B.173 
+	(T)\;
+LOCATION:CL: 6B.173 (T)
+DESCRIPTION:Art: SU\nVeranstaltung: IT2121-Betriebliche Standardsoftware\n
+	Dozent: Lange\, P.\nRaum: CL: 6B.173 (T)\nAnmerkung: -\nPause: inkl. 15 m
+	in Pause\nVeranstaltungsuntergruppe: -
+DTSTART;TZID=Europe/Berlin:20221018T121500
+DTEND;TZID=Europe/Berlin:20221018T144500
+PRIORITY:5
+CLASS:PUBLIC
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20220907T201215Z
+TRANSP:OPAQUE
+SEQUENCE:0
+UID:sked.de1050509
+SUMMARY:PÜ\;IT2091-Labor Embedded Systems Gr. 2\;Buck\;CL: 6B.158 (E-L)\;
+LOCATION:CL: 6B.158 (E-L)
+DESCRIPTION:Art: PÜ\nVeranstaltung: IT2091-Labor Embedded Systems Gr. 2\n
+	Dozent: Buck\nRaum: CL: 6B.158 (E-L)\nAnmerkung: -\nPause: inkl. 15 min P
+	ause\nVeranstaltungsuntergruppe: -
+DTSTART;TZID=Europe/Berlin:20221018T160000
+DTEND;TZID=Europe/Berlin:20221018T191500
+PRIORITY:5
+CLASS:PUBLIC
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20220907T201215Z
+TRANSP:OPAQUE
+SEQUENCE:0
+UID:sked.de1042551
+SUMMARY:PCÜ\;IT2101-Labor SWE I: Gruppe 2\;Kretzmer\;Online
+LOCATION:
+DESCRIPTION:Art: PCÜ\nVeranstaltung: IT2101-Labor SWE I: Gruppe 2\nDozent
+	: Kretzmer\nRaum: -\nAnmerkung: Online\nPause: -\nVeranstaltungsuntergrup
+	pe: -
+DTSTART;TZID=Europe/Berlin:20221019T081500
+DTEND;TZID=Europe/Berlin:20221019T094500
+PRIORITY:5
+CLASS:PUBLIC
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20220907T201215Z
+TRANSP:OPAQUE
+SEQUENCE:0
+UID:sked.de1033541
+SUMMARY:SU\;IT4111-IT und Gesellschaft\;Seemann\;CL: 6B.173 (T)\;
+LOCATION:CL: 6B.173 (T)
+DESCRIPTION:Art: SU\nVeranstaltung: IT4111-IT und Gesellschaft\nDozent: S
+	eemann\nRaum: CL: 6B.173 (T)\nAnmerkung: -\nPause: inkl. 15 min Pause\nVe
+	ranstaltungsuntergruppe: -
+DTSTART;TZID=Europe/Berlin:20221019T130000
+DTEND;TZID=Europe/Berlin:20221019T161500
+PRIORITY:5
+CLASS:PUBLIC
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20220907T201215Z
+TRANSP:OPAQUE
+SEQUENCE:0
+UID:sked.de1040977
+SUMMARY:PCÜ\;IT2101-Labor SWE I: Gruppe 1\;Niedling\;CL: 6B.450 (T)\;
+LOCATION:CL: 6B.450 (T)
+DESCRIPTION:Art: PCÜ\nVeranstaltung: IT2101-Labor SWE I: Gruppe 1\nDozent
+	: Niedling\nRaum: CL: 6B.450 (T)\nAnmerkung: -\nPause: inkl. 15 min Pause
+	\nVeranstaltungsuntergruppe: -
+DTSTART;TZID=Europe/Berlin:20221020T093000
+DTEND;TZID=Europe/Berlin:20221020T121500
+PRIORITY:5
+CLASS:PUBLIC
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20220907T201215Z
+TRANSP:OPAQUE
+SEQUENCE:0
+UID:sked.de1040976
+SUMMARY:SU\;IT2101-Software-Engineering I\;Niedling\;CL: 6B.450 (T)\;
+LOCATION:CL: 6B.450 (T)
+DESCRIPTION:Art: SU\nVeranstaltung: IT2101-Software-Engineering I\nDozent
+	: Niedling\nRaum: CL: 6B.450 (T)\nAnmerkung: -\nPause: inkl. 15 min Pause
+	\nVeranstaltungsuntergruppe: -
+DTSTART;TZID=Europe/Berlin:20221020T130000
+DTEND;TZID=Europe/Berlin:20221020T154500
+PRIORITY:5
+CLASS:PUBLIC
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20220907T201215Z
+TRANSP:OPAQUE
+SEQUENCE:0
+UID:sked.de1040978
+SUMMARY:PCÜ\;IT2101-Labor SWE I: Gruppe 2\;Niedling\;CL: 6B.450 (T)\;
+LOCATION:CL: 6B.450 (T)
+DESCRIPTION:Art: PCÜ\nVeranstaltung: IT2101-Labor SWE I: Gruppe 2\nDozent
+	: Niedling\nRaum: CL: 6B.450 (T)\nAnmerkung: -\nPause: inkl. 15 min Pause
+	\nVeranstaltungsuntergruppe: -
+DTSTART;TZID=Europe/Berlin:20221020T160000
+DTEND;TZID=Europe/Berlin:20221020T184500
+PRIORITY:5
+CLASS:PUBLIC
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20220907T201215Z
+TRANSP:OPAQUE
+SEQUENCE:0
+UID:sked.de1042550
+SUMMARY:PCÜ\;IT2101-Labor SWE I: Gruppe 1\;Kretzmer\;Online
+LOCATION:
+DESCRIPTION:Art: PCÜ\nVeranstaltung: IT2101-Labor SWE I: Gruppe 1\nDozent
+	: Kretzmer\nRaum: -\nAnmerkung: Online\nPause: -\nVeranstaltungsuntergrup
+	pe: -
+DTSTART;TZID=Europe/Berlin:20221021T083000
+DTEND;TZID=Europe/Berlin:20221021T100000
+PRIORITY:5
+CLASS:PUBLIC
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20220907T201215Z
+TRANSP:OPAQUE
+SEQUENCE:0
+UID:sked.de1032283
+SUMMARY:SU\;IT2121-Aufbau und Struktur von Rechenanlagen\;Thomas\;CL: 6B.
+	052 (IT-L)\;
+LOCATION:CL: 6B.052 (IT-L)
+DESCRIPTION:Art: SU\nVeranstaltung: IT2121-Aufbau und Struktur von Rechen
+	anlagen\nDozent: Thomas\nRaum: CL: 6B.052 (IT-L)\nAnmerkung: -\nPause: in
+	kl. 30 min Pause\nVeranstaltungsuntergruppe: -
+DTSTART;TZID=Europe/Berlin:20221021T130000
+DTEND;TZID=Europe/Berlin:20221021T180000
+PRIORITY:5
+CLASS:PUBLIC
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20220907T201215Z
+TRANSP:OPAQUE
+SEQUENCE:0
+UID:sked.de1044667
+SUMMARY:SU\;Englisch\;Munby\;CL: 6B.450 (T)\;
+LOCATION:CL: 6B.450 (T)
+DESCRIPTION:Art: SU\nVeranstaltung: Englisch\nDozent: Munby\nRaum: CL: 6B
+	.450 (T)\nAnmerkung: -\nPause: inkl. 15 min Pause\nVeranstaltungsuntergru
+	ppe: -
+DTSTART;TZID=Europe/Berlin:20221024T104500
+DTEND;TZID=Europe/Berlin:20221024T140000
+PRIORITY:5
+CLASS:PUBLIC
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20220907T201215Z
+TRANSP:OPAQUE
+SEQUENCE:0
+UID:sked.de1031772
+SUMMARY:SU\;IT2091-Embedded Systems\;Buck\;Online
+LOCATION:
+DESCRIPTION:Art: SU\nVeranstaltung: IT2091-Embedded Systems\nDozent: Buck
+	\nRaum: -\nAnmerkung: Online\nPause: inkl. 15 min Pause\nVeranstaltungsun
+	tergruppe: -
+DTSTART;TZID=Europe/Berlin:20221024T160000
+DTEND;TZID=Europe/Berlin:20221024T191500
+PRIORITY:5
+CLASS:PUBLIC
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20220907T201215Z
+TRANSP:OPAQUE
+SEQUENCE:0
+UID:sked.de1032065
+SUMMARY:SU\;IT2121-Betriebliche Standardsoftware\;Lange\, P.\;CL: 6B.153 
+	(L)\;
+LOCATION:CL: 6B.153 (L)
+DESCRIPTION:Art: SU\nVeranstaltung: IT2121-Betriebliche Standardsoftware\n
+	Dozent: Lange\, P.\nRaum: CL: 6B.153 (L)\nAnmerkung: -\nPause: inkl. 15 m
+	in Pause\nVeranstaltungsuntergruppe: -
+DTSTART;TZID=Europe/Berlin:20221025T121500
+DTEND;TZID=Europe/Berlin:20221025T144500
+PRIORITY:5
+CLASS:PUBLIC
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20220907T201215Z
+TRANSP:OPAQUE
+SEQUENCE:0
+UID:sked.de1033542
+SUMMARY:SU\;IT4111-IT und Gesellschaft\;Seemann\;CL: 6B.173 (T)\;
+LOCATION:CL: 6B.173 (T)
+DESCRIPTION:Art: SU\nVeranstaltung: IT4111-IT und Gesellschaft\nDozent: S
+	eemann\nRaum: CL: 6B.173 (T)\nAnmerkung: -\nPause: inkl. 15 min Pause\nVe
+	ranstaltungsuntergruppe: -
+DTSTART;TZID=Europe/Berlin:20221026T120000
+DTEND;TZID=Europe/Berlin:20221026T151500
+PRIORITY:5
+CLASS:PUBLIC
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20220907T201215Z
+TRANSP:OPAQUE
+SEQUENCE:0
+UID:sked.de1033055
+SUMMARY:PÜ\;IT2091-Labor Embedded Systems\;Buck\;CL: 6B.158 (E-L)\;Auswei
+	chtermin
+LOCATION:CL: 6B.158 (E-L)
+DESCRIPTION:Art: PÜ\nVeranstaltung: IT2091-Labor Embedded Systems\nDozent
+	: Buck\nRaum: CL: 6B.158 (E-L)\nAnmerkung: Ausweichtermin\nPause: inkl. 1
+	5 min Pause\nVeranstaltungsuntergruppe: -
+DTSTART;TZID=Europe/Berlin:20221026T160000
+DTEND;TZID=Europe/Berlin:20221026T191500
+PRIORITY:5
+CLASS:PUBLIC
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20220907T201215Z
+TRANSP:OPAQUE
+SEQUENCE:0
+UID:sked.de1033042
+SUMMARY:Klausur\;IT4111-IKT-Recht\;Loock\;PRÄSENZ! Klausurraumplanung Stu
+	diendekanat
+LOCATION:
+DESCRIPTION:Art: Klausur\nVeranstaltung: IT4111-IKT-Recht\nDozent: Loock\n
+	Raum: -\nAnmerkung: PRÄSENZ! Klausurraumplanung Studiendekanat\nPause: -\n
+	Veranstaltungsuntergruppe: -
+DTSTART;TZID=Europe/Berlin:20221028T140000
+DTEND;TZID=Europe/Berlin:20221028T160000
+X-SKED-OUTLOOKFARBINDEX:16
+PRIORITY:5
+CLASS:PUBLIC
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20220907T201215Z
+TRANSP:OPAQUE
+SEQUENCE:0
+UID:sked.de1050658
+SUMMARY:Klausur\;IT4111-IKT-Recht\;Loock\;Schreibzeitverlängerung nur für
+	 Matr.Nrn.: 699727\, 693733 (50%)\; 676322 (25%)\, 645463 (25%+DINA3-Ausd
+	ruck)
+LOCATION:
+DESCRIPTION:Art: Klausur\nVeranstaltung: IT4111-IKT-Recht\nDozent: Loock\n
+	Raum: -\nAnmerkung: Schreibzeitverlängerung nur für Matr.Nrn.: 699727\, 6
+	93733 (50%)\; 676322 (25%)\, 645463 (25%+DINA3-Ausdruck)\nPause: -\nVeran
+	staltungsuntergruppe: -
+DTSTART;TZID=Europe/Berlin:20221028T160000
+DTEND;TZID=Europe/Berlin:20221028T170000
+X-SKED-OUTLOOKFARBINDEX:16
+PRIORITY:5
+CLASS:PUBLIC
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20220907T201215Z
+TRANSP:OPAQUE
+SEQUENCE:0
+UID:sked.de1033543
+SUMMARY:SU\;IT4111-IT und Gesellschaft\;Seemann\;CL: 6B.450 (T)\;
+LOCATION:CL: 6B.450 (T)
+DESCRIPTION:Art: SU\nVeranstaltung: IT4111-IT und Gesellschaft\nDozent: S
+	eemann\nRaum: CL: 6B.450 (T)\nAnmerkung: -\nPause: inkl. 15 min Pause\nVe
+	ranstaltungsuntergruppe: -
+DTSTART;TZID=Europe/Berlin:20221101T130000
+DTEND;TZID=Europe/Berlin:20221101T161500
+PRIORITY:5
+CLASS:PUBLIC
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20220907T201215Z
+TRANSP:OPAQUE
+SEQUENCE:0
+UID:sked.de1031862
+SUMMARY:PÜ\;IT2091-Labor Embedded Systems Gr. 1\;Buck\;CL: 6B.158 (E-L)\;
+	Laborprüfung! (Bei Abwesenheit Nachweispflicht durch ärztliches Attest)
+LOCATION:CL: 6B.158 (E-L)
+DESCRIPTION:Art: PÜ\nVeranstaltung: IT2091-Labor Embedded Systems Gr. 1\n
+	Dozent: Buck\nRaum: CL: 6B.158 (E-L)\nAnmerkung: Laborprüfung! (Bei Abwes
+	enheit Nachweispflicht durch ärztliches Attest)\nPause: inkl. 30 min Paus
+	e\nVeranstaltungsuntergruppe: -
+DTSTART;TZID=Europe/Berlin:20221102T100000
+DTEND;TZID=Europe/Berlin:20221102T133000
+PRIORITY:5
+CLASS:PUBLIC
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20220907T201215Z
+TRANSP:OPAQUE
+SEQUENCE:0
+UID:sked.de1031865
+SUMMARY:PÜ\;IT2091-Labor Embedded Systems Gr. 2\;Buck\;CL: 6B.158 (E-L)\;
+	Laborprüfung! (Bei Abwesenheit Nachweispflicht durch ärztliches Attest)
+LOCATION:CL: 6B.158 (E-L)
+DESCRIPTION:Art: PÜ\nVeranstaltung: IT2091-Labor Embedded Systems Gr. 2\n
+	Dozent: Buck\nRaum: CL: 6B.158 (E-L)\nAnmerkung: Laborprüfung! (Bei Abwes
+	enheit Nachweispflicht durch ärztliches Attest)\nPause: inkl. 30 min Paus
+	e\nVeranstaltungsuntergruppe: -
+DTSTART;TZID=Europe/Berlin:20221102T140000
+DTEND;TZID=Europe/Berlin:20221102T173000
+PRIORITY:5
+CLASS:PUBLIC
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20220907T201215Z
+TRANSP:OPAQUE
+SEQUENCE:0
+UID:sked.de1031869
+SUMMARY:PÜ\;IT2091-Labor Embedded Systems Gr. 3\;Buck\;CL: 6B.158 (E-L)\;
+	Laborprüfung! (Bei Abwesenheit Nachweispflicht durch ärztliches Attest)
+LOCATION:CL: 6B.158 (E-L)
+DESCRIPTION:Art: PÜ\nVeranstaltung: IT2091-Labor Embedded Systems Gr. 3\n
+	Dozent: Buck\nRaum: CL: 6B.158 (E-L)\nAnmerkung: Laborprüfung! (Bei Abwes
+	enheit Nachweispflicht durch ärztliches Attest)\nPause: inkl. 30 min Paus
+	e\nVeranstaltungsuntergruppe: -
+DTSTART;TZID=Europe/Berlin:20221103T100000
+DTEND;TZID=Europe/Berlin:20221103T133000
+PRIORITY:5
+CLASS:PUBLIC
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20220907T201215Z
+TRANSP:OPAQUE
+SEQUENCE:0
+UID:sked.de1031872
+SUMMARY:PÜ\;IT2091-Labor Embedded Systems Gr. 4\;Buck\;CL: 6B.158 (E-L)\;
+	Laborprüfung! (Bei Abwesenheit Nachweispflicht durch ärztliches Attest)
+LOCATION:CL: 6B.158 (E-L)
+DESCRIPTION:Art: PÜ\nVeranstaltung: IT2091-Labor Embedded Systems Gr. 4\n
+	Dozent: Buck\nRaum: CL: 6B.158 (E-L)\nAnmerkung: Laborprüfung! (Bei Abwes
+	enheit Nachweispflicht durch ärztliches Attest)\nPause: inkl. 30 min Paus
+	e\nVeranstaltungsuntergruppe: -
+DTSTART;TZID=Europe/Berlin:20221103T140000
+DTEND;TZID=Europe/Berlin:20221103T173000
+PRIORITY:5
+CLASS:PUBLIC
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20220907T201215Z
+TRANSP:OPAQUE
+SEQUENCE:0
+UID:sked.de1031778
+SUMMARY:Klausur\;IT2121-Betriebl. Hard- u. Softwaresysteme\;Lange\, P.\, 
+	Monett Diaz\, D.\, Thomas\;PRÄSENZ\, Klausurraumplanung Studiendekanat
+LOCATION:
+DESCRIPTION:Art: Klausur\nVeranstaltung: IT2121-Betriebl. Hard- u. Softwa
+	resysteme\nDozent: Lange\, P.\, Monett Diaz\, D.\, Thomas\nRaum: -\nAnmer
+	kung: PRÄSENZ\, Klausurraumplanung Studiendekanat\nPause: -\nVeranstaltun
+	gsuntergruppe: -
+DTSTART;TZID=Europe/Berlin:20221107T090000
+DTEND;TZID=Europe/Berlin:20221107T120000
+X-SKED-OUTLOOKFARBINDEX:16
+PRIORITY:5
+CLASS:PUBLIC
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20220907T201215Z
+TRANSP:OPAQUE
+SEQUENCE:0
+UID:sked.de1033821
+SUMMARY:Klausur\;IT2121-Betriebl. Hard- u. Softwaresysteme\;Lange\, P.\, 
+	Monett Diaz\, D.\;Schreibzeitverlängerung nur für Matr.Nrn.: 699727\, 693
+	733 (50%)\; 676322 (25%)\, 645463 (25%+DINA3-Ausdruck)
+LOCATION:
+DESCRIPTION:Art: Klausur\nVeranstaltung: IT2121-Betriebl. Hard- u. Softwa
+	resysteme\nDozent: Lange\, P.\, Monett Diaz\, D.\nRaum: -\nAnmerkung: Sch
+	reibzeitverlängerung nur für Matr.Nrn.: 699727\, 693733 (50%)\; 676322 (2
+	5%)\, 645463 (25%+DINA3-Ausdruck)\nPause: -\nVeranstaltungsuntergruppe: -
+DTSTART;TZID=Europe/Berlin:20221107T120000
+DTEND;TZID=Europe/Berlin:20221107T133000
+X-SKED-OUTLOOKFARBINDEX:16
+PRIORITY:5
+CLASS:PUBLIC
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20220907T201215Z
+TRANSP:OPAQUE
+SEQUENCE:0
+UID:sked.de1033056
+SUMMARY:PÜ\;IT2091-Labor Embedded Systems\;Buck\;CL: 6B.158 (E-L)\;Laborp
+	rüfung (Ersatztermin)! (Bei Abwesenheit Nachweispflicht durch ärztliches 
+	Attest)
+LOCATION:CL: 6B.158 (E-L)
+DESCRIPTION:Art: PÜ\nVeranstaltung: IT2091-Labor Embedded Systems\nDozent
+	: Buck\nRaum: CL: 6B.158 (E-L)\nAnmerkung: Laborprüfung (Ersatztermin)! (
+	Bei Abwesenheit Nachweispflicht durch ärztliches Attest)\nPause: inkl. 15
+	 min Pause\nVeranstaltungsuntergruppe: -
+DTSTART;TZID=Europe/Berlin:20221108T160000
+DTEND;TZID=Europe/Berlin:20221108T191500
+PRIORITY:5
+CLASS:PUBLIC
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20220907T201215Z
+TRANSP:OPAQUE
+SEQUENCE:0
+UID:sked.de1031779
+SUMMARY:Klausur\;IT2101-Software-Engineering I\;Monett Diaz\, D.\;PRÄSENZ
+	\, Klausurraumplanung Studiendekanat
+LOCATION:
+DESCRIPTION:Art: Klausur\nVeranstaltung: IT2101-Software-Engineering I\nD
+	ozent: Monett Diaz\, D.\nRaum: -\nAnmerkung: PRÄSENZ\, Klausurraumplanung
+	 Studiendekanat\nPause: -\nVeranstaltungsuntergruppe: -
+DTSTART;TZID=Europe/Berlin:20221109T140000
+DTEND;TZID=Europe/Berlin:20221109T160000
+X-SKED-OUTLOOKFARBINDEX:16
+PRIORITY:5
+CLASS:PUBLIC
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20220907T201215Z
+TRANSP:OPAQUE
+SEQUENCE:0
+UID:sked.de1033822
+SUMMARY:Klausur\;IT2101-Software-Engineering I\;Monett Diaz\, D.\;Schreib
+	zeitverlängerung nur für Matr.Nrn.: 699727\, 693733 (50%)\; 676322 (25%)\,
+	 645463 (25%+DINA3-Ausdruck)
+LOCATION:
+DESCRIPTION:Art: Klausur\nVeranstaltung: IT2101-Software-Engineering I\nD
+	ozent: Monett Diaz\, D.\nRaum: -\nAnmerkung: Schreibzeitverlängerung nur 
+	für Matr.Nrn.: 699727\, 693733 (50%)\; 676322 (25%)\, 645463 (25%+DINA3-A
+	usdruck)\nPause: -\nVeranstaltungsuntergruppe: -
+DTSTART;TZID=Europe/Berlin:20221109T160000
+DTEND;TZID=Europe/Berlin:20221109T170000
+X-SKED-OUTLOOKFARBINDEX:16
+PRIORITY:5
+CLASS:PUBLIC
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20220907T201215Z
+TRANSP:OPAQUE
+SEQUENCE:0
+UID:sked.de1033544
+SUMMARY:SU\;IT4111-IT und Gesellschaft\;Seemann\;CL: 6B.173 (T)\;Prüfungs
+	gespräche - Nichtanwesenheit ist durch ärztliches Attest nachzuweisen!
+LOCATION:CL: 6B.173 (T)
+DESCRIPTION:Art: SU\nVeranstaltung: IT4111-IT und Gesellschaft\nDozent: S
+	eemann\nRaum: CL: 6B.173 (T)\nAnmerkung: Prüfungsgespräche - Nichtanwesen
+	heit ist durch ärztliches Attest nachzuweisen!\nPause: inkl. 15 min Pause
+	\nVeranstaltungsuntergruppe: -
+DTSTART;TZID=Europe/Berlin:20221110T130000
+DTEND;TZID=Europe/Berlin:20221110T161500
+PRIORITY:5
+CLASS:PUBLIC
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20220907T201215Z
+TRANSP:OPAQUE
+SEQUENCE:0
+UID:sked.de1031780
+SUMMARY:Klausur\;IT2091-Embedded Systems\;Buck\;PRÄSENZ\, Klausurraumplan
+	ung Studiendekanat
+LOCATION:
+DESCRIPTION:Art: Klausur\nVeranstaltung: IT2091-Embedded Systems\nDozent:
+	 Buck\nRaum: -\nAnmerkung: PRÄSENZ\, Klausurraumplanung Studiendekanat\nP
+	ause: -\nVeranstaltungsuntergruppe: -
+DTSTART;TZID=Europe/Berlin:20221111T140000
+DTEND;TZID=Europe/Berlin:20221111T160000
+X-SKED-OUTLOOKFARBINDEX:16
+PRIORITY:5
+CLASS:PUBLIC
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20220907T201215Z
+TRANSP:OPAQUE
+SEQUENCE:0
+UID:sked.de1033823
+SUMMARY:Klausur\;IT2091-Embedded Systems\;Buck\;Schreibzeitverlängerung n
+	ur für Matr.Nrn.: 699727\, 693733 (50%)\; 676322 (25%)\, 645463 (25%+DINA
+	3-Ausdruck)
+LOCATION:
+DESCRIPTION:Art: Klausur\nVeranstaltung: IT2091-Embedded Systems\nDozent:
+	 Buck\nRaum: -\nAnmerkung: Schreibzeitverlängerung nur für Matr.Nrn.: 699
+	727\, 693733 (50%)\; 676322 (25%)\, 645463 (25%+DINA3-Ausdruck)\nPause: -
+	\nVeranstaltungsuntergruppe: -
+DTSTART;TZID=Europe/Berlin:20221111T160000
+DTEND;TZID=Europe/Berlin:20221111T170000
+X-SKED-OUTLOOKFARBINDEX:16
+PRIORITY:5
+CLASS:PUBLIC
+END:VEVENT
+END:VCALENDAR
