@@ -1,0 +1,18 @@
+@import url('https://fonts.googleapis.com/css2?family=Maven+Pro:wght@600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+html, body, #app {
+    width: 100%;
+    height: 100%;
+    @apply bg-bg;
+
+    font-family: 'Maven Pro', sans-serif;
+}

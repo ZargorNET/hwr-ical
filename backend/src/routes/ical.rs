@@ -1,49 +1,16 @@
-use std::error::Error;
-use std::net::SocketAddr;
-
 use anyhow::anyhow;
 use axum::body::Body;
 use axum::extract::Path;
 use axum::http::StatusCode;
-use axum::response::{IntoResponse, Response};
-use axum::Router;
-use axum::routing::any;
+use axum::response::Response;
 use encoding_rs::UTF_8;
 use regex::{Regex, RegexBuilder};
-use tracing_subscriber::layer::SubscriberExt;
-use tracing_subscriber::util::SubscriberInitExt;
 
-use ical_parser::ParsedCalendar;
+use crate::AppError;
+use crate::consts::{MAX_REGEX_COUNT, REVERSE_PROXY_URL};
+use crate::ical_parser::{ParsedCalendar, ParsedEvent};
 
-use crate::ical_parser::ParsedEvent;
-
-mod ical_parser;
-
-const REVERSE_PROXY_URL: &str = "https://moodle.hwr-berlin.de/fb2-stundenplan/download.php?doctype=.ics&url=./fb2-stundenplaene/";
-
-struct AppError(anyhow::Error);
-
-#[tokio::main]
-async fn main() -> Result<(), Box<dyn Error>> {
-    tracing_subscriber::registry()
-        .with(tracing_subscriber::fmt::layer())
-        .init();
-
-    let port = std::env::var("PORT").unwrap().parse::<u16>().unwrap();
-
-    let app = Router::new()
-        .route("/:study/:semester/:course/*regex", any(root));
-
-    let addr = SocketAddr::from(([0, 0, 0, 0], port));
-
-    axum::Server::bind(&addr)
-        .serve(app.into_make_service())
-        .await?;
-
-    Ok(())
-}
-
-async fn root(Path((study, semester, course, rregex)): Path<(String, String, String, String)>) -> Result<Response<Body>, AppError> {
+pub async fn root(Path((study, semester, course, rregex)): Path<(String, String, String, String)>) -> Result<Response<Body>, AppError> {
     let regex = &rregex[1..];
 
     let res = reqwest::get(REVERSE_PROXY_URL.to_owned() + &format!("{study}/{semester}/{course}")).await.unwrap();
@@ -71,7 +38,7 @@ fn reduce(regex: &str, res: &str) -> anyhow::Result<String> {
     let mut return_string;
     let regex_split: Vec<&str> = regex.split("/").collect();
 
-    if regex_split.len() >= 10 {
+    if regex_split.len() > MAX_REGEX_COUNT as usize {
         return Err(anyhow!("too many regex").into());
     }
 
@@ -103,28 +70,17 @@ fn reduce(regex: &str, res: &str) -> anyhow::Result<String> {
     Ok(return_string)
 }
 
-impl IntoResponse for AppError {
-    fn into_response(self) -> Response {
-        (StatusCode::INTERNAL_SERVER_ERROR, format!("error: {}", &self.0.to_string())).into_response()
-    }
-}
-
-impl From<anyhow::Error> for AppError {
-    fn from(e: anyhow::Error) -> Self {
-        Self(e)
-    }
-}
 
 #[cfg(test)]
 mod test {
     use super::*;
 
-    const EXAMPLE_CALENDAR: &'static str = include_str!("../EXAMPLE_CALENDAR.ics");
+    const EXAMPLE_CALENDAR: &'static str = include_str!("../../EXAMPLE_CALENDAR.ics");
 
     #[test]
     fn test_reduce() {
         let result = reduce("Wie/Englisch", EXAMPLE_CALENDAR).unwrap();
-        let parsed = ical_parser::ParsedCalendar::from(result.as_str());
+        let parsed = ParsedCalendar::from(result.as_str());
         assert_ne!(parsed.events.len(), 0);
         assert!(parsed.events.into_iter().all(|x| !x.summary.contains("Wiederholungs") && !x.summary.contains("Englisch")));
     }

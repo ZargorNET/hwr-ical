@@ -1,2 +1,5 @@
-/target
-.idea
+backend/target
+backend/.idea
+frontend/.idea
+frontend/node_modules
+.idea/
