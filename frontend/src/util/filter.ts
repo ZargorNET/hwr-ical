@@ -1,3 +1,4 @@
 export interface Filter {
-    value: string
+    value: string,
+    focused: boolean
 }

@@ -6,17 +6,24 @@ use anyhow::anyhow;
 use chrono::{TimeZone, Utc};
 use lazy_static::lazy_static;
 use regex::Regex;
+use serde::Serialize;
 use tokio::sync::RwLock;
 
 use crate::consts::STUNDENPLAN_URL;
 
-y
-pub type CourseMap = RwLock<HashMap<String, Vec<String>>>;
+pub type CourseMap = RwLock<HashMap<String, Vec<Semester>>>;
 
 lazy_static! {
     static ref COURSE_REGEX: Regex = Regex::new(r#"<option value=".*?"[^>]*?>(.*?)</option>"#).unwrap();
     static ref SEMESTER_PARENT_REGEX: Regex = Regex::new(r#"\[()\]|,\[(\[.*?\])\]"#).unwrap();
     static ref SEMESTER_LITERAL_REGEX: Regex = Regex::new(r#""(.*?)""#).unwrap();
+}
+
+#[derive(Serialize)]
+pub struct Semester {
+    pub display_name: String,
+    pub year_part: String,
+    pub course_part: String,
 }
 
 pub struct CourseFetcher {
@@ -43,7 +50,33 @@ impl CourseFetcher {
         let mut course_guard = self.course.write().await;
         course_guard.clear();
         for (course, semester) in courses.into_iter().zip(semester.into_iter()) {
-            course_guard.insert(course.to_owned(), semester.into_iter().map(|s| s.to_owned()).collect());
+            // Skip courses that start with a . like .gnupg
+            if course.starts_with(".") {
+                continue;
+            }
+
+            // Skip courses whose semester does not have the necessary " - " divisor
+            // just hwr stuff...
+            if semester.iter().any(|s| !s.contains(" - ")) {
+                continue;
+            }
+
+            let mappedSemester = semester.into_iter().map(|s| {
+                let split: Vec<&str> = s.split(" - ").collect();
+                if split.len() != 2 {
+                    return Err(anyhow!("invalid semester format"));
+                }
+
+                Ok(
+                    Semester {
+                        display_name: s.to_owned(),
+                        year_part: split[0].to_owned(),
+                        course_part: split[1].to_owned()
+                    }
+                )
+            }).collect::<Result<Vec<Semester>, anyhow::Error>>()?;
+
+            course_guard.insert(course.to_owned(), mappedSemester);
         }
 
         Ok(())
@@ -64,8 +97,12 @@ pub fn start(fetcher: Arc<CourseFetcher>) {
             in24h = Utc::now() + chrono::Duration::hours(24);
 
             tracing::info!(next_fetch = %in24h, "fetching courses");
-            if let Err(e) = fetcher.fetch().await {
-                tracing::error!(error = %e, "error while fetching");
+
+            loop {
+                match fetcher.fetch().await {
+                    Ok(_) => break,
+                    Err(e) =>  tracing::error!(error = %e, "error while fetching")
+                }
             }
         }
     });
@@ -90,7 +127,12 @@ fn parse_semester(body: &str) -> anyhow::Result<Vec<Vec<&str>>> {
         let mut childVec = Vec::new();
 
         for child in SEMESTER_LITERAL_REGEX.captures_iter(matched.as_str()) {
-            childVec.push(child.get(1).ok_or_else(|| anyhow!("no string in match found"))?.as_str());
+            let mut course = child.get(1).ok_or_else(|| anyhow!("no string in match found"))?.as_str();
+            if course.contains(".") {
+                // strip stuff like .html
+                course = course.split(".").collect::<Vec<&str>>()[0];
+            }
+            childVec.push(course);
         }
 
         result.push(childVec);

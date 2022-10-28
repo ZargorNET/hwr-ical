@@ -12,7 +12,8 @@
     "@event-calendar/build": "^0.13.1",
     "@event-calendar/core": "^0.13.1",
     "@event-calendar/time-grid": "^0.13.1",
-    "ical.js": "^1.5.0",
+    "@types/ical": "^0.8.0",
+    "ical": "^0.8.0",
     "vue": "^3.2"
   },
   "devDependencies": {

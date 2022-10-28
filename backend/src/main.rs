@@ -1,11 +1,16 @@
 use std::error::Error;
 use std::net::SocketAddr;
 use std::sync::Arc;
+use anyhow::anyhow;
 
 use axum::{Extension, Json, Router};
-use axum::http::StatusCode;
+use axum::body::Body;
+use axum::http::{HeaderMap, HeaderValue, Method, Request, StatusCode};
+use axum::http::header::HeaderName;
+use axum::middleware::Next;
 use axum::response::{IntoResponse, Response};
 use axum::routing::any;
+use reqwest::header::ACCESS_CONTROL_ALLOW_ORIGIN;
 use serde_json::json;
 use tracing_subscriber::layer::SubscriberExt;
 use tracing_subscriber::util::SubscriberInitExt;
@@ -47,6 +52,20 @@ async fn main() -> Result<(), Box<dyn Error>> {
         .route("/courses", any(routes::courses))
         .route("/:study/:semester/:course/*regex", any(routes::format_ical))
         .fallback(any(not_found))
+        .layer(axum::middleware::from_fn(|req: Request<Body>, next: Next<Body>| async {
+            let mut cors_headers = HeaderMap::new();
+            cors_headers.insert(ACCESS_CONTROL_ALLOW_ORIGIN, "*".parse().map_err(|e| anyhow!("could not parse header {}", &e))?);
+
+            // Handle OPTIONS without reading body / etc.
+            // While it does not check if the route even exists & co, this will allow CORS
+            if req.method() == Method::OPTIONS {
+                return Ok::<_, AppError>((StatusCode::OK, cors_headers).into_response());
+            }
+            let mut res = next.run(req).await;
+            cors_headers.into_iter().for_each(|(name, value)| { res.headers_mut().insert(name.unwrap(), value); });
+
+            Ok::<_, AppError>(res)
+        }))
         .layer(Extension(app_state));
 
     let addr = SocketAddr::from(([0, 0, 0, 0], port));

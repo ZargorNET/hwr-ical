@@ -8,32 +8,36 @@
 import Calendar from '@event-calendar/core';
 import TimeGrid from '@event-calendar/time-grid';
 import "@event-calendar/build/event-calendar-modern.min.css";
-import {defineComponent, onMounted} from "vue";
+import {onMounted, watchEffect} from "vue";
+import {CalendarEntry} from "../util/calendarentry";
 
-const month = new Date().getMonth();
-const year = new Date().getFullYear();
+const props = defineProps<{
+  entries: CalendarEntry[]
+}>();
+
+let ec: Calendar;
 
 onMounted(() => {
 
-  let ec = new Calendar({
+  ec = new Calendar({
     target: document.getElementById('ec'),
     props: {
       plugins: [TimeGrid],
       options: {
         view: 'timeGridWeek',
         allDaySlot: false,
-        events: [
-          {
-            id: "1",
-            start: new Date(),
-            end: new Date(new Date().getTime() + 2 * 60 * 60 * 1000),
-            title: "Test"
-          }
-        ]
+        events: props.entries
       }
     }
   });
 });
+
+watchEffect(() => {
+  ec?.getEvents().forEach((e: { id: any; }) => ec?.removeEventById(e.id));
+
+  props.entries.forEach(e => ec?.addEvent(e));
+});
+
 </script>
 
 <style>
