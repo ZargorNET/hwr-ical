@@ -8,8 +8,9 @@ use axum::body::Body;
 use axum::http::{HeaderMap, HeaderValue, Method, Request, StatusCode};
 use axum::http::header::HeaderName;
 use axum::middleware::Next;
-use axum::response::{IntoResponse, Response};
+use axum::response::{IntoResponse, Redirect, Response};
 use axum::routing::any;
+use axum_extra::routing::SpaRouter;
 use reqwest::header::ACCESS_CONTROL_ALLOW_ORIGIN;
 use serde_json::json;
 use tracing_subscriber::layer::SubscriberExt;
@@ -48,10 +49,11 @@ async fn main() -> Result<(), Box<dyn Error>> {
 
 
     let app = Router::new()
+        .merge(SpaRouter::new("/frontend/", "dist"))
+        .route("/:study/:semester/:course/*regex", any(routes::format_ical))
         .route("/regex_limit", any(routes::regex_limit))
         .route("/courses", any(routes::courses))
-        .route("/:study/:semester/:course/*regex", any(routes::format_ical))
-        .fallback(any(not_found))
+        .route("/", any(|| async move { Redirect::temporary("/frontend") }))
         .layer(axum::middleware::from_fn(|req: Request<Body>, next: Next<Body>| async {
             let mut cors_headers = HeaderMap::new();
             cors_headers.insert(ACCESS_CONTROL_ALLOW_ORIGIN, "*".parse().map_err(|e| anyhow!("could not parse header {}", &e))?);

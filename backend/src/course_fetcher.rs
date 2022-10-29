@@ -61,6 +61,7 @@ impl CourseFetcher {
                 continue;
             }
 
+
             let mappedSemester = semester.into_iter().map(|s| {
                 let split: Vec<&str> = s.split(" - ").collect();
                 if split.len() != 2 {

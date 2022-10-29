@@ -1,7 +1,14 @@
-FROM rustlang/rust:nightly
+FROM node:16-alpine as frontend
+WORKDIR /frontend
+COPY /frontend .
+RUN npm i
+RUN npm run build
 
-WORKDIR .
-COPY . .
+FROM rustlang/rust:nightly-alpine
+WORKDIR /backend
+EXPOSE 8080
+COPY /backend .
+COPY --from=frontend /frontend/dist dist
 RUN cargo install --path .
 RUN rm -r target/
 

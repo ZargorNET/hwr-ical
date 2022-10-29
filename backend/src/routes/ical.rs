@@ -45,7 +45,7 @@ fn reduce(regex: &str, res: &str) -> anyhow::Result<String> {
     let built_regex: Vec<Regex> = regex_split
         .iter()
         .filter(|r| !r.is_empty())
-        .filter_map(|r| RegexBuilder::new(&r).size_limit(100000).build().ok())
+        .filter_map(|r| RegexBuilder::new(("(?i)".to_owned() + &r).as_str()).size_limit(100000).build().ok())
         .collect();
     return_string = res.replace("\r", ""); // why? But okayyy
     let cal = ParsedCalendar::from(return_string.as_str());

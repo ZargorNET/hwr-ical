@@ -5,7 +5,9 @@
 </template>
 
 <script setup lang="ts">
+/// @ts-ignore
 import Calendar from '@event-calendar/core';
+/// @ts-ignore
 import TimeGrid from '@event-calendar/time-grid';
 import "@event-calendar/build/event-calendar-modern.min.css";
 import {onMounted, watchEffect} from "vue";
