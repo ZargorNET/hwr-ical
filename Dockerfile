@@ -4,7 +4,7 @@ COPY /frontend .
 RUN npm i
 RUN npm run build
 
-FROM rustlang/rust:nightly-alpine
+FROM rustlang/rust:nightly
 WORKDIR /backend
 EXPOSE 8080
 COPY /backend .
