@@ -1,5 +1,5 @@
 <template>
-  <div class="w-full h-full" id="ec">
+  <div class="w-full" id="ec">
 
   </div>
 </template>
@@ -44,7 +44,7 @@ watchEffect(() => {
 
 <style>
 .ec {
-  @apply bg-bglight rounded p-2;
+  @apply bg-bglight rounded p-2 overflow-x-auto overflow-y-visible ;
 }
 
 .ec-day.ec-today {
@@ -52,6 +52,7 @@ watchEffect(() => {
 }
 
 .ec-body, .ec-header {
+  min-width: 720px;
   @apply border-none;
 }
 
@@ -70,11 +71,21 @@ watchEffect(() => {
 .ec-icon.ec-prev:after, .ec-icon.ec-next:after {
   @apply border-white;
 }
+
 .ec-button:not(:disabled) {
   @apply text-gray;
 }
+
 .ec-button:disabled {
   @apply bg-red;
 }
 
+.ec-event-title {
+  @apply overflow-auto;
+  scrollbar-width: none;
+}
+
+.ec-event-title::-webkit-scrollbar {
+  display: none;
+}
 </style>

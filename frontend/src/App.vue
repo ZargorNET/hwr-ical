@@ -5,11 +5,12 @@
         <h1 class="text-6xl">HWR iCal</h1>
         <p>Mit diesem Tool kannst Du einen Link von Deinem Stundenplan generieren, welchen du in z.B. Google Kalendar
           einfügen und gleichzeitig Kurse rausfiltern kannst, welche du nicht belegst</p>
+        <p>Funktioniert am besten auf einem größeren Display!</p>
       </div>
 
       <div class="flex items-center flex-col">
         <div class="child:p-2 flex flex-col items-center">
-          <div>
+          <div class="sm:w-3/4">
             <h2 class="text-3xl text-center mb-2">Wähle deinen Kurs</h2>
             <Suspense>
               <CourseSelector v-model:selectedCourse="selectedCourse" v-model:selectedSemester="selectedSemester"/>

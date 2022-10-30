@@ -12,21 +12,23 @@
 </template>
 
 <script setup lang="ts">
-import {ref} from "vue";
+import {onMounted, ref} from "vue";
 import {Filter} from "../util/filter";
 import {get_regex_limit} from "../util/fetcher";
 
-const filterItems = ref<Filter[]>([{value: "", focused: false}]);
-
+const filterItems = ref<Filter[]>(JSON.parse(localStorage.getItem("filter") ?? '[{"value": "", "focused": false}]'));
 const emits = defineEmits(["update:filterItems"]);
-
 const maxRegex = await get_regex_limit();
+
+onMounted(() => updateEmit());
 
 function updateFilterListCount() {
   filterItems.value = filterItems.value.filter(i => i.focused || i.value !== "");
 
   if (newFilterPossible())
     filterItems.value.push({value: "", focused: false});
+
+  localStorage.setItem("filter", JSON.stringify(filterItems.value));
 }
 
 function newFilterPossible(): boolean {
