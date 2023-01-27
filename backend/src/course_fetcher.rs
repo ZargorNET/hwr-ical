@@ -62,7 +62,7 @@ impl CourseFetcher {
             }
 
 
-            let mappedSemester = semester.into_iter().map(|s| {
+            let mapped_semester = semester.into_iter().map(|s| {
                 let split: Vec<&str> = s.split(" - ").collect();
                 if split.len() != 2 {
                     return Err(anyhow!("invalid semester format"));
@@ -77,7 +77,7 @@ impl CourseFetcher {
                 )
             }).collect::<Result<Vec<Semester>, anyhow::Error>>()?;
 
-            course_guard.insert(course.to_owned(), mappedSemester);
+            course_guard.insert(course.to_owned(), mapped_semester);
         }
 
         Ok(())
@@ -125,7 +125,7 @@ fn parse_semester(body: &str) -> anyhow::Result<Vec<Vec<&str>>> {
     for capture in SEMESTER_PARENT_REGEX.captures_iter(body) {
         let matched = capture.get(0).unwrap();
 
-        let mut childVec = Vec::new();
+        let mut child_vec = Vec::new();
 
         for child in SEMESTER_LITERAL_REGEX.captures_iter(matched.as_str()) {
             let mut course = child.get(1).ok_or_else(|| anyhow!("no string in match found"))?.as_str();
@@ -133,10 +133,10 @@ fn parse_semester(body: &str) -> anyhow::Result<Vec<Vec<&str>>> {
                 // strip stuff like .html
                 course = course.split(".").collect::<Vec<&str>>()[0];
             }
-            childVec.push(course);
+            child_vec.push(course);
         }
 
-        result.push(childVec);
+        result.push(child_vec);
     }
 
     Ok(result)
@@ -146,7 +146,7 @@ fn parse_semester(body: &str) -> anyhow::Result<Vec<Vec<&str>>> {
 mod test {
     use super::*;
 
-    const EXAMPLE_STUNDENPLAN: &str = include_str!("../example_stundenplan.php");
+    const EXAMPLE_STUNDENPLAN: &str = include_str!("../testdata/example_stundenplan.php");
 
     #[test]
     fn test_parse_courses() {

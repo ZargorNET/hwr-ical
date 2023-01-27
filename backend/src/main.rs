@@ -5,8 +5,7 @@ use anyhow::anyhow;
 
 use axum::{Extension, Json, Router};
 use axum::body::Body;
-use axum::http::{HeaderMap, HeaderValue, Method, Request, StatusCode};
-use axum::http::header::HeaderName;
+use axum::http::{HeaderMap, Method, Request, StatusCode};
 use axum::middleware::Next;
 use axum::response::{IntoResponse, Redirect, Response};
 use axum::routing::any;
@@ -19,7 +18,6 @@ use tracing_subscriber::util::SubscriberInitExt;
 use crate::course_fetcher::CourseFetcher;
 
 mod routes;
-mod ical_parser;
 mod consts;
 mod course_fetcher;
 
