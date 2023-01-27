@@ -32,6 +32,7 @@ pub struct AppState {
 async fn main() -> Result<(), Box<dyn Error>> {
     tracing_subscriber::registry()
         .with(tracing_subscriber::fmt::layer())
+        .with(tracing_subscriber::filter::EnvFilter::from_default_env())
         .init();
 
 
