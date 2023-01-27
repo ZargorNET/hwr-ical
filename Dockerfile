@@ -8,7 +8,7 @@ FROM rustlang/rust:nightly
 WORKDIR /backend
 EXPOSE 8080
 COPY /backend .
-COPY --from=frontend /backend/dist dist
+COPY --from=frontend /frontend/dist dist
 RUN cargo install --path .
 RUN rm -r target/
 
