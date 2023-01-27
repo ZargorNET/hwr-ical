@@ -99,7 +99,7 @@ async function generate() {
   console.info(`Generated URL ${url}`);
   resultUrl.value = url;
 
-  await updateCalendar(url);
+  await updateCalendar(url + "?new=false");
 }
 
 async function updateCalendar(url: string) {
