@@ -6,12 +6,12 @@ use anyhow::anyhow;
 use axum::{Extension, Json, Router};
 use axum::body::Body;
 use axum::http::{HeaderMap, Method, Request, StatusCode};
+use axum::http::header::ACCESS_CONTROL_ALLOW_ORIGIN;
 use axum::middleware::Next;
 use axum::response::{IntoResponse, Redirect, Response};
 use axum::routing::any;
-use axum_extra::routing::SpaRouter;
-use reqwest::header::ACCESS_CONTROL_ALLOW_ORIGIN;
 use serde_json::json;
+use tower_http::services::{ServeDir, ServeFile};
 use tracing_subscriber::layer::SubscriberExt;
 use tracing_subscriber::util::SubscriberInitExt;
 
@@ -46,14 +46,15 @@ async fn main() -> Result<(), Box<dyn Error>> {
 
     course_fetcher::start(app_state.course_fetcher.clone());
 
+    let spa_service = ServeDir::new("dist").not_found_service(ServeFile::new("dist/index.html"));
 
     let app = Router::new()
-        .merge(SpaRouter::new("/frontend/", "dist"))
+        .nest_service("/frontend", spa_service.clone())
         .route("/:study/:semester/:course/*regex", any(routes::format_ical))
         .route("/regex_limit", any(routes::regex_limit))
         .route("/courses", any(routes::courses))
         .route("/", any(|| async move { Redirect::temporary("/frontend") }))
-        .layer(axum::middleware::from_fn(|req: Request<Body>, next: Next<Body>| async {
+        .layer(axum::middleware::from_fn(|req: Request<Body>, next: Next| async {
             let mut cors_headers = HeaderMap::new();
             cors_headers.insert(ACCESS_CONTROL_ALLOW_ORIGIN, "*".parse().map_err(|e| anyhow!("could not parse header {}", &e))?);
 
@@ -67,19 +68,16 @@ async fn main() -> Result<(), Box<dyn Error>> {
 
             Ok::<_, AppError>(res)
         }))
-        .layer(Extension(app_state));
+        .layer(Extension(app_state))
+        .fallback_service(spa_service);
 
     let addr = SocketAddr::from(([0, 0, 0, 0], port));
+    let listener = tokio::net::TcpListener::bind(addr).await.unwrap();
 
-    axum::Server::bind(&addr)
-        .serve(app.into_make_service())
+    axum::serve(listener, app)
         .await?;
 
     Ok(())
-}
-
-async fn not_found() -> impl IntoResponse {
-    (StatusCode::NOT_FOUND, Json(json!({"error": "not found"})))
 }
 
 impl IntoResponse for AppError {

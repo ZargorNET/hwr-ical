@@ -12,9 +12,7 @@ use regex::{Regex, RegexBuilder};
 use crate::AppError;
 use crate::consts::{MAX_REGEX_COUNT, REVERSE_PROXY_URL};
 
-pub async fn root(Path((study, semester, course, rregex)): Path<(String, String, String, String)>, Query(query): Query<HashMap<String, String>>) -> Result<Response<Body>, AppError> {
-    let regex = &rregex[1..];
-
+pub async fn root(Path((study, semester, course, regex)): Path<(String, String, String, String)>, Query(query): Query<HashMap<String, String>>) -> Result<Response<Body>, AppError> {
     let res = reqwest::get(REVERSE_PROXY_URL.to_owned() + &format!("{study}/{semester}/{course}")).await.unwrap();
     let status = res.status();
     let body = res.bytes().await.unwrap();
@@ -26,7 +24,7 @@ pub async fn root(Path((study, semester, course, rregex)): Path<(String, String,
     let mut calendar = Calendar::from_str(&res).map_err(|e| anyhow!(e))?;
 
     if !regex.is_empty() {
-        reduce(regex, &mut calendar)?;
+        reduce(&regex, &mut calendar)?;
     }
 
     let new_format = bool::from_str(query.get("new").unwrap_or(&"true".to_owned())).unwrap_or(true);
@@ -44,7 +42,10 @@ pub async fn root(Path((study, semester, course, rregex)): Path<(String, String,
 }
 
 fn reduce(regex: &str, calendar: &mut Calendar) -> anyhow::Result<()> {
-    let regex_split: Vec<&str> = regex.split("/").collect();
+    let mut regex_split: Vec<&str> = regex.split("/").collect();
+    if regex.ends_with("/") {
+        regex_split.drain(regex_split.len() - 1..);
+    }
 
     if regex_split.len() > MAX_REGEX_COUNT as usize {
         return Err(anyhow!("too many regex").into());
@@ -171,5 +172,16 @@ mod test {
 
         assert!(events.iter().map(|e| e.get_summary().unwrap()).all(|s| !s.contains("Wiederholungs") && !s.contains("Englisch")));
         assert_ne!(events.len(), 0);
+    }
+
+    #[test]
+    fn test_regex_limit() {
+        let mut calendar = Calendar::from_str(EXAMPLE_CALENDAR).unwrap();
+
+        assert!(reduce("1/2/3/4/5/6/7/8/9/10", &mut calendar).is_ok());
+        assert!(reduce("1/2/3/4/5/6/7/8/9/10/", &mut calendar).is_ok());
+        assert!(reduce("1/2/3/4/5/6/7/8/9/10/11", &mut calendar).is_err());
+        assert!(reduce("1/2/3/4/5/6/7/8/9/10/11/", &mut calendar).is_err());
+        assert!(reduce("", &mut calendar).is_ok());
     }
 }
