@@ -34,7 +34,7 @@ function updateFilterListCount() {
 function newFilterPossible(): boolean {
   const filterItemList = filterItems.value;
 
-  if (filterItemList.length > maxRegex)
+  if (filterItemList.length >= maxRegex)
     return false;
 
   if (filterItemList.length != 0 && filterItemList[filterItemList.length - 1].value === "")
