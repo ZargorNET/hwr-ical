@@ -12,7 +12,11 @@ use regex::{Regex, RegexBuilder};
 use crate::AppError;
 use crate::consts::{MAX_REGEX_COUNT, REVERSE_PROXY_URL};
 
-pub async fn root(Path((study, semester, course, regex)): Path<(String, String, String, String)>, Query(query): Query<HashMap<String, String>>) -> Result<Response<Body>, AppError> {
+pub async fn root_without_regex(Path((study, semester, course)): Path<(String, String, String)>, query: Query<HashMap<String, String>>) -> Result<Response<Body>, AppError> {
+    root(Path((study, semester, course, None)), query).await
+}
+
+pub async fn root(Path((study, semester, course, regex)): Path<(String, String, String, Option<String>)>, Query(query): Query<HashMap<String, String>>) -> Result<Response<Body>, AppError> {
     let res = reqwest::get(REVERSE_PROXY_URL.to_owned() + &format!("{study}/{semester}/{course}")).await.unwrap();
     let status = res.status();
     let body = res.bytes().await.unwrap();
@@ -23,8 +27,10 @@ pub async fn root(Path((study, semester, course, regex)): Path<(String, String, 
 
     let mut calendar = Calendar::from_str(&res).map_err(|e| anyhow!(e))?;
 
-    if !regex.is_empty() {
-        reduce(&regex, &mut calendar)?;
+    if let Some(regex) = regex {
+        if !regex.is_empty() {
+            reduce(&regex, &mut calendar)?;
+        }
     }
 
     let new_format = bool::from_str(query.get("new").unwrap_or(&"true".to_owned())).unwrap_or(true);
