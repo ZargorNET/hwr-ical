@@ -50,6 +50,8 @@ async fn main() -> Result<(), Box<dyn Error>> {
 
     let app = Router::new()
         .nest_service("/frontend", spa_service.clone())
+        .route("/:study/:semester/:course", any(routes::format_ical_no_regex))
+        .route("/:study/:semester/:course/", any(routes::format_ical_no_regex))
         .route("/:study/:semester/:course/*regex", any(routes::format_ical))
         .route("/regex_limit", any(routes::regex_limit))
         .route("/courses", any(routes::courses))
