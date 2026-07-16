@@ -15,8 +15,6 @@ pub type CourseMap = RwLock<HashMap<String, Vec<Semester>>>;
 
 lazy_static! {
     static ref COURSE_REGEX: Regex = Regex::new(r#"<option value=".*?"[^>]*?>(.*?)</option>"#).unwrap();
-    static ref SEMESTER_PARENT_REGEX: Regex = Regex::new(r#"\[()\]|,\[(\[.*?\])\]"#).unwrap();
-    static ref SEMESTER_LITERAL_REGEX: Regex = Regex::new(r#""(.*?)""#).unwrap();
 }
 
 #[derive(Serialize)]
@@ -28,11 +26,12 @@ pub struct Semester {
 
 pub struct CourseFetcher {
     pub course: CourseMap, // Course, Semester
+    pub client: reqwest::Client,
 }
 
 impl CourseFetcher {
     async fn fetch(&self) -> anyhow::Result<()> {
-        let res = reqwest::get(STUNDENPLAN_URL).await?;
+        let res = crate::moodle_client::get_moodle(&self.client, STUNDENPLAN_URL).await?;
 
         if !res.status().is_success() {
             return Err(anyhow!("status code was {}", &res.status().as_str()));
@@ -119,23 +118,31 @@ fn parse_courses(body: &str) -> anyhow::Result<Vec<&str>> {
     Ok(courses)
 }
 
-fn parse_semester(body: &str) -> anyhow::Result<Vec<Vec<&str>>> {
+fn parse_semester(body: &str) -> anyhow::Result<Vec<Vec<String>>> {
+    lazy_static! {
+        static ref KURSE_JSON_REGEX: Regex = Regex::new(r#"var kurse\s*=\s*(\[[\s\S]*?\]);"#).unwrap();
+    }
+
+    let caps = KURSE_JSON_REGEX.captures(body)
+        .ok_or_else(|| anyhow!("could not find var kurse in body"))?;
+
+    let json_str = caps.get(1).unwrap().as_str();
+    let parsed: Vec<Vec<Vec<String>>> = serde_json::from_str(json_str)?;
+
     let mut result = Vec::new();
-
-    for capture in SEMESTER_PARENT_REGEX.captures_iter(body) {
-        let matched = capture.get(0).unwrap();
-
+    for course_semesters in parsed {
         let mut child_vec = Vec::new();
-
-        for child in SEMESTER_LITERAL_REGEX.captures_iter(matched.as_str()) {
-            let mut course = child.get(1).ok_or_else(|| anyhow!("no string in match found"))?.as_str();
-            if course.contains(".") {
-                // strip stuff like .html
-                course = course.split(".").collect::<Vec<&str>>()[0];
+        for sem in course_semesters {
+            if let Some(mut course) = sem.into_iter().next() {
+                if course.contains(".") {
+                    // strip stuff like .html
+                    if let Some(first_part) = course.split(".").next() {
+                        course = first_part.to_string();
+                    }
+                }
+                child_vec.push(course);
             }
-            child_vec.push(course);
         }
-
         result.push(child_vec);
     }
 

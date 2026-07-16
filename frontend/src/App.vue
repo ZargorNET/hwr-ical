@@ -87,7 +87,8 @@ const resultUrl = ref<string>("-- Ergebnis --");
 const resultElement = ref<HTMLParagraphElement>();
 
 async function generate() {
-  let url = `${API_URL}/${selectedCourse.value.toLowerCase()}/${selectedSemester.value!.year_part.toLowerCase()}/${selectedSemester.value!.course_part}`;
+  const base = API_URL || window.location.origin;
+  let url = `${base}/${selectedCourse.value.toLowerCase()}/${selectedSemester.value!.year_part.toLowerCase()}/${selectedSemester.value!.course_part}`;
 
   for (let filter of filterItems.value) {
     if (filter.value !== "")

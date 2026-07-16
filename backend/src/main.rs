@@ -20,12 +20,14 @@ use crate::course_fetcher::CourseFetcher;
 mod routes;
 mod consts;
 mod course_fetcher;
+mod moodle_client;
 
 pub struct AppError(anyhow::Error);
 
 #[derive(Clone)]
 pub struct AppState {
     pub course_fetcher: Arc<CourseFetcher>,
+    pub client: reqwest::Client,
 }
 
 #[tokio::main]
@@ -38,10 +40,16 @@ async fn main() -> Result<(), Box<dyn Error>> {
 
     let port = std::env::var("PORT").unwrap().parse::<u16>().unwrap();
 
+    let client = reqwest::Client::builder()
+        .cookie_store(true)
+        .build()?;
+
     let app_state = AppState {
         course_fetcher: Arc::new(CourseFetcher {
-            course: Default::default()
-        })
+            course: Default::default(),
+            client: client.clone(),
+        }),
+        client,
     };
 
     course_fetcher::start(app_state.course_fetcher.clone());

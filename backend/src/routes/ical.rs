@@ -3,6 +3,7 @@ use std::str::FromStr;
 use anyhow::anyhow;
 use axum::body::Body;
 use axum::extract::{Path, Query};
+use axum::Extension;
 use axum::http::StatusCode;
 use axum::response::Response;
 use encoding_rs::UTF_8;
@@ -12,12 +13,13 @@ use regex::{Regex, RegexBuilder};
 use crate::AppError;
 use crate::consts::{MAX_REGEX_COUNT, REVERSE_PROXY_URL};
 
-pub async fn root_without_regex(Path((study, semester, course)): Path<(String, String, String)>, query: Query<HashMap<String, String>>) -> Result<Response<Body>, AppError> {
-    root(Path((study, semester, course, None)), query).await
+pub async fn root_without_regex(Extension(state): Extension<crate::AppState>, Path((study, semester, course)): Path<(String, String, String)>, query: Query<HashMap<String, String>>) -> Result<Response<Body>, AppError> {
+    root(Extension(state), Path((study, semester, course, None)), query).await
 }
 
-pub async fn root(Path((study, semester, course, regex)): Path<(String, String, String, Option<String>)>, Query(query): Query<HashMap<String, String>>) -> Result<Response<Body>, AppError> {
-    let res = reqwest::get(REVERSE_PROXY_URL.to_owned() + &format!("{study}/{semester}/{course}")).await.unwrap();
+pub async fn root(Extension(state): Extension<crate::AppState>, Path((study, semester, course, regex)): Path<(String, String, String, Option<String>)>, Query(query): Query<HashMap<String, String>>) -> Result<Response<Body>, AppError> {
+    let url = REVERSE_PROXY_URL.to_owned() + &format!("{study}/{semester}/{course}");
+    let res = crate::moodle_client::get_moodle(&state.client, &url).await.map_err(|e| anyhow!(e))?;
     let status = res.status();
     let body = res.bytes().await.unwrap();
     let res = UTF_8.decode_with_bom_removal(&body).0.to_string();
