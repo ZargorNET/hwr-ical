@@ -36,7 +36,7 @@ async fn main() -> Result<(), Box<dyn Error>> {
         .init();
 
 
-    let port = std::env::var("PORT").unwrap().parse::<u16>().unwrap();
+    let port = std::env::var("PORT").unwrap().parse::<u16>().expect("env PORT is not present");
 
     let app_state = AppState {
         course_fetcher: Arc::new(CourseFetcher {
