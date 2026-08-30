@@ -2,19 +2,22 @@ use std::collections::HashMap;
 use std::sync::Arc;
 use std::time::Duration;
 
-use anyhow::anyhow;
+use anyhow::{anyhow, Context};
 use chrono::{TimeZone, Utc};
 use lazy_static::lazy_static;
 use regex::Regex;
 use serde::Serialize;
 use tokio::sync::RwLock;
 
-use crate::consts::STUNDENPLAN_URL;
+use crate::consts::{MOODLE_LOGIN_URL, STUNDENPLAN_URL};
 
 pub type CourseMap = RwLock<HashMap<String, Vec<Semester>>>;
 
 lazy_static! {
-    static ref COURSE_REGEX: Regex = Regex::new(r#"<option value=".*?"[^>]*?>(.*?)</option>"#).unwrap();
+    static ref LOGINTOKEN_REGEX: Regex =
+        Regex::new(r##"<input[^>]*name="logintoken"[^>]*value="([^"]*)"[^>]*>"##).unwrap();
+    static ref COURSE_REGEX: Regex =
+        Regex::new(r#"<option value=".*?"[^>]*?>(.*?)</option>"#).unwrap();
     static ref SEMESTER_PARENT_REGEX: Regex = Regex::new(r#"\[()\]|,\[(\[.*?\])\]"#).unwrap();
     static ref SEMESTER_LITERAL_REGEX: Regex = Regex::new(r#""(.*?)""#).unwrap();
 }
@@ -32,24 +35,61 @@ pub struct CourseFetcher {
 
 impl CourseFetcher {
     async fn fetch(&self) -> anyhow::Result<()> {
-        let res = reqwest::get(STUNDENPLAN_URL).await?;
+        let client = reqwest::ClientBuilder::new().cookie_store(true).build()?;
+        let res = client.get(STUNDENPLAN_URL).send().await?;
 
         if !res.status().is_success() {
             return Err(anyhow!("status code was {}", &res.status().as_str()));
         }
 
-        let content = res.text().await?;
+        let mut content = res.text().await?;
+
+        // They added a guest login with CSRF...
+        // Quick and dirty way to fix that.
+        if content.contains("logintoken") {
+            let logintoken = LOGINTOKEN_REGEX
+                .captures(&content)
+                .context("no logintoken found")?
+                .get(1)
+                .context("group not found")?
+                .as_str();
+
+            let res = client
+                .post(MOODLE_LOGIN_URL)
+                .form(&HashMap::from([
+                    ("logintoken", logintoken),
+                    ("username", "guest"),
+                    ("password", "guest"),
+                ]))
+                .send()
+                .await?;
+
+            if !res.status().is_success() {
+                return Err(anyhow!("login status code was {}", &res.status().as_str()));
+            }
+
+            // Resend request after login.
+            // The auth token is in the cookie jar.
+            let res = client.get(STUNDENPLAN_URL).send().await?;
+            content = res.text().await?;
+        }
 
         let courses = parse_courses(&content)?;
-        let semester = parse_semester(&content)?;
+        let mut semester = parse_semester(&content)?;
 
         if courses.len() != semester.len() {
-            return Err(anyhow!("course and semester length differ"));
+            if courses.len() > semester.len() {
+                for _ in 0..(courses.len() - semester.len()) {
+                    semester.push(Vec::with_capacity(0));
+                }
+            } else {
+                return Err(anyhow!("course and semester length differ"));
+            }
         }
 
         let mut course_guard = self.course.write().await;
         course_guard.clear();
-        for (course, semester) in courses.into_iter().zip(semester.into_iter()) {
+        for (course, semester) in courses.into_iter().zip(semester) {
             // Skip courses that start with a . like .gnupg
             if course.starts_with(".") {
                 continue;
@@ -61,21 +101,21 @@ impl CourseFetcher {
                 continue;
             }
 
+            let mapped_semester = semester
+                .into_iter()
+                .map(|s| {
+                    let split: Vec<&str> = s.split(" - ").collect();
+                    if split.len() != 2 {
+                        return Err(anyhow!("invalid semester format"));
+                    }
 
-            let mapped_semester = semester.into_iter().map(|s| {
-                let split: Vec<&str> = s.split(" - ").collect();
-                if split.len() != 2 {
-                    return Err(anyhow!("invalid semester format"));
-                }
-
-                Ok(
-                    Semester {
+                    Ok(Semester {
                         display_name: s.to_owned(),
                         year_part: split[0].to_owned(),
-                        course_part: split[1].to_owned()
-                    }
-                )
-            }).collect::<Result<Vec<Semester>, anyhow::Error>>()?;
+                        course_part: split[1].to_owned(),
+                    })
+                })
+                .collect::<Result<Vec<Semester>, anyhow::Error>>()?;
 
             course_guard.insert(course.to_owned(), mapped_semester);
         }
@@ -102,7 +142,7 @@ pub fn start(fetcher: Arc<CourseFetcher>) {
             loop {
                 match fetcher.fetch().await {
                     Ok(_) => break,
-                    Err(e) =>  tracing::error!(error = %e, "error while fetching")
+                    Err(e) => tracing::error!(error = %e, "error while fetching"),
                 }
             }
         }
@@ -113,7 +153,12 @@ fn parse_courses(body: &str) -> anyhow::Result<Vec<&str>> {
     let mut courses = Vec::new();
 
     for capture in COURSE_REGEX.captures_iter(body) {
-        courses.push(capture.get(1).ok_or_else(|| anyhow!("match has no course"))?.as_str());
+        courses.push(
+            capture
+                .get(1)
+                .ok_or_else(|| anyhow!("match has no course"))?
+                .as_str(),
+        );
     }
 
     Ok(courses)
@@ -128,7 +173,10 @@ fn parse_semester(body: &str) -> anyhow::Result<Vec<Vec<&str>>> {
         let mut child_vec = Vec::new();
 
         for child in SEMESTER_LITERAL_REGEX.captures_iter(matched.as_str()) {
-            let mut course = child.get(1).ok_or_else(|| anyhow!("no string in match found"))?.as_str();
+            let mut course = child
+                .get(1)
+                .ok_or_else(|| anyhow!("no string in match found"))?
+                .as_str();
             if course.contains(".") {
                 // strip stuff like .html
                 course = course.split(".").collect::<Vec<&str>>()[0];
@@ -150,7 +198,7 @@ mod test {
 
     #[test]
     fn test_parse_courses() {
-        let result = parse_courses(&EXAMPLE_STUNDENPLAN).unwrap();
+        let result = parse_courses(EXAMPLE_STUNDENPLAN).unwrap();
 
         assert_eq!(result[0], ".gnupg");
         assert_eq!(result[1], "IP");
@@ -164,7 +212,7 @@ mod test {
 
     #[test]
     fn test_parse_semester() {
-        let result = parse_semester(&EXAMPLE_STUNDENPLAN).unwrap();
+        let result = parse_semester(EXAMPLE_STUNDENPLAN).unwrap();
 
         assert_eq!(result[0].len(), 0);
         assert_eq!(result[1].len(), 6);
