@@ -18,8 +18,7 @@ lazy_static! {
         Regex::new(r##"<input[^>]*name="logintoken"[^>]*value="([^"]*)"[^>]*>"##).unwrap();
     static ref COURSE_REGEX: Regex =
         Regex::new(r#"<option value=".*?"[^>]*?>(.*?)</option>"#).unwrap();
-    static ref SEMESTER_PARENT_REGEX: Regex = Regex::new(r#"\[()\]|,\[(\[.*?\])\]"#).unwrap();
-    static ref SEMESTER_LITERAL_REGEX: Regex = Regex::new(r#""(.*?)""#).unwrap();
+    static ref KURSE_JSON_REGEX: Regex = Regex::new(r#"var kurse\s*=\s*(\[[\s\S]*?\]);"#).unwrap();
 }
 
 #[derive(Serialize)]
@@ -75,16 +74,10 @@ impl CourseFetcher {
         }
 
         let courses = parse_courses(&content)?;
-        let mut semester = parse_semester(&content)?;
+        let semester = parse_semester(&content)?;
 
         if courses.len() != semester.len() {
-            if courses.len() > semester.len() {
-                for _ in 0..(courses.len() - semester.len()) {
-                    semester.push(Vec::with_capacity(0));
-                }
-            } else {
-                return Err(anyhow!("course and semester length differ"));
-            }
+            return Err(anyhow!("course and semester length differ"));
         }
 
         let mut course_guard = self.course.write().await;
@@ -153,37 +146,49 @@ fn parse_courses(body: &str) -> anyhow::Result<Vec<&str>> {
     let mut courses = Vec::new();
 
     for capture in COURSE_REGEX.captures_iter(body) {
-        courses.push(
-            capture
-                .get(1)
-                .ok_or_else(|| anyhow!("match has no course"))?
-                .as_str(),
-        );
+        let course = capture
+            .get(1)
+            .ok_or_else(|| anyhow!("match has no course"))?
+            .as_str();
+
+        if course == "Fachrichtung wählen" {
+            continue;
+        }
+
+        // Refer to the example_stundenplan.php.
+        // If we encounter this, the remaining option fields are unwanted.
+        if course == "Kurs Wählen" {
+            break;
+        }
+
+        courses.push(course);
     }
 
     Ok(courses)
 }
 
-fn parse_semester(body: &str) -> anyhow::Result<Vec<Vec<&str>>> {
+fn parse_semester(body: &str) -> anyhow::Result<Vec<Vec<String>>> {
+    let caps = KURSE_JSON_REGEX
+        .captures(body)
+        .ok_or_else(|| anyhow!("could not find var kurse in body"))?;
+
+    let json_str = caps.get(1).unwrap().as_str();
+    let parsed: Vec<Vec<Vec<String>>> = serde_json::from_str(json_str)?;
+
     let mut result = Vec::new();
-
-    for capture in SEMESTER_PARENT_REGEX.captures_iter(body) {
-        let matched = capture.get(0).unwrap();
-
+    for course_semesters in parsed {
         let mut child_vec = Vec::new();
-
-        for child in SEMESTER_LITERAL_REGEX.captures_iter(matched.as_str()) {
-            let mut course = child
-                .get(1)
-                .ok_or_else(|| anyhow!("no string in match found"))?
-                .as_str();
-            if course.contains(".") {
-                // strip stuff like .html
-                course = course.split(".").collect::<Vec<&str>>()[0];
+        for sem in course_semesters {
+            if let Some(mut course) = sem.into_iter().next() {
+                if course.contains(".") {
+                    // strip stuff like .html
+                    if let Some(first_part) = course.split(".").next() {
+                        course = first_part.to_string();
+                    }
+                }
+                child_vec.push(course);
             }
-            child_vec.push(course);
         }
-
         result.push(child_vec);
     }
 
@@ -200,10 +205,9 @@ mod test {
     fn test_parse_courses() {
         let result = parse_courses(EXAMPLE_STUNDENPLAN).unwrap();
 
-        assert_eq!(result[0], ".gnupg");
-        assert_eq!(result[1], "IP");
-        assert_eq!(result[2], "bank");
-        assert_eq!(result[3], "bauwesen");
+        assert_eq!(result[0], "IP");
+        assert_eq!(result[1], "bank");
+        assert_eq!(result[2], "bauwesen");
         //
         // skip the in-between
         //
@@ -214,12 +218,33 @@ mod test {
     fn test_parse_semester() {
         let result = parse_semester(EXAMPLE_STUNDENPLAN).unwrap();
 
-        assert_eq!(result[0].len(), 0);
-        assert_eq!(result[1].len(), 6);
+        dbg!(&result);
+        assert_eq!(
+            result[1],
+            [
+                "semester1 - kursa",
+                "semester1 - kursb",
+                "semester1 - kursc",
+                "semester2 - kursa",
+                "semester2 - kursb",
+                "semester2 - kursc",
+                "semester3 - kursa",
+                "semester3 - kursb",
+                "semester3 - kursc",
+                "semester4 - kursa",
+                "semester4 - kursb",
+                "semester4 - kursc",
+                "semester5 - kursa",
+                "semester5 - kursb",
+                "semester5 - kursc",
+                "semester6 - kursa",
+                "semester6 - kursb",
+                "semester6 - kursc"
+            ]
+        );
         assert_eq!(result[19][0], "6B_151_153");
         assert_eq!(result[19][1], "Drebing_Michael");
         assert_eq!(result[19][2], "Gapp");
-        assert_eq!(result[19][3], "Incomings_DLM");
-        assert_eq!(result[19][21], "wannemacher");
+        assert_eq!(result[19][3], "IP21_5_5");
     }
 }
