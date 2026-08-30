@@ -1,5 +1,3 @@
-use std::collections::HashMap;
-use std::str::FromStr;
 use anyhow::anyhow;
 use axum::body::Body;
 use axum::extract::{Path, Query};
@@ -8,16 +6,26 @@ use axum::response::Response;
 use encoding_rs::UTF_8;
 use icalendar::{Calendar, CalendarComponent, Component, EventLike};
 use regex::{Regex, RegexBuilder};
+use std::collections::HashMap;
+use std::str::FromStr;
 
-use crate::AppError;
 use crate::consts::{MAX_REGEX_COUNT, REVERSE_PROXY_URL};
+use crate::AppError;
 
-pub async fn root_without_regex(Path((study, semester, course)): Path<(String, String, String)>, query: Query<HashMap<String, String>>) -> Result<Response<Body>, AppError> {
+pub async fn root_without_regex(
+    Path((study, semester, course)): Path<(String, String, String)>,
+    query: Query<HashMap<String, String>>,
+) -> Result<Response<Body>, AppError> {
     root(Path((study, semester, course, None)), query).await
 }
 
-pub async fn root(Path((study, semester, course, regex)): Path<(String, String, String, Option<String>)>, Query(query): Query<HashMap<String, String>>) -> Result<Response<Body>, AppError> {
-    let res = reqwest::get(REVERSE_PROXY_URL.to_owned() + &format!("{study}/{semester}/{course}")).await.unwrap();
+pub async fn root(
+    Path((study, semester, course, regex)): Path<(String, String, String, Option<String>)>,
+    Query(query): Query<HashMap<String, String>>,
+) -> Result<Response<Body>, AppError> {
+    let res = reqwest::get(REVERSE_PROXY_URL.to_owned() + &format!("{study}/{semester}/{course}"))
+        .await
+        .unwrap();
     let status = res.status();
     let body = res.bytes().await.unwrap();
     let res = UTF_8.decode_with_bom_removal(&body).0.to_string();
@@ -38,13 +46,12 @@ pub async fn root(Path((study, semester, course, regex)): Path<(String, String, 
         simplify(&mut calendar);
     }
 
-    Ok(
-        Response::builder()
-            .header("Content-Disposition", "inline; filename=calendar.ics")
-            .header("Content-Type", "text/calendar; charset=utf-8")
-            .status(StatusCode::OK)
-            .body(Body::from(calendar.to_string())).unwrap()
-    )
+    Ok(Response::builder()
+        .header("Content-Disposition", "inline; filename=calendar.ics")
+        .header("Content-Type", "text/calendar; charset=utf-8")
+        .status(StatusCode::OK)
+        .body(Body::from(calendar.to_string()))
+        .unwrap())
 }
 
 fn reduce(regex: &str, calendar: &mut Calendar) -> anyhow::Result<()> {
@@ -54,24 +61,27 @@ fn reduce(regex: &str, calendar: &mut Calendar) -> anyhow::Result<()> {
     }
 
     if regex_split.len() > MAX_REGEX_COUNT as usize {
-        return Err(anyhow!("too many regex").into());
+        return Err(anyhow!("too many regex"));
     }
 
     let built_regex: Vec<Regex> = regex_split
         .iter()
         .filter(|r| !r.is_empty())
-        .filter_map(|r| RegexBuilder::new(("(?i)".to_owned() + &r).as_str()).size_limit(100000).build().ok())
+        .filter_map(|r| {
+            RegexBuilder::new(("(?i)".to_owned() + &r).as_str())
+                .size_limit(100000)
+                .build()
+                .ok()
+        })
         .collect();
 
     calendar.components.retain(|component| {
         if let Some(event) = component.as_event() {
-            let Some(summary) = event.get_summary() else { return true; };
-
-            return if built_regex.iter().any(|r| r.is_match(&summary)) {
-                false
-            } else {
-                true
+            let Some(summary) = event.get_summary() else {
+                return true;
             };
+
+            return !built_regex.iter().any(|r| r.is_match(&summary));
         }
 
         true
@@ -83,17 +93,22 @@ fn reduce(regex: &str, calendar: &mut Calendar) -> anyhow::Result<()> {
 fn simplify(calendar: &mut Calendar) {
     for component in calendar.components.iter_mut() {
         if let CalendarComponent::Event(ref mut event) = component {
-            let Some(summary) = event.get_summary() else { continue; };
+            let Some(summary) = event.get_summary() else {
+                continue;
+            };
             let summary = summary.replace("\\", "");
 
             let mut split = summary.split(r#";"#);
 
-
-            let Some(period_type) = split.next() else { continue; };
+            let Some(period_type) = split.next() else {
+                continue;
+            };
 
             // "IT2141-Labor SWE II:" to "Labor SWE II:"
             let period = {
-                let Some(period) = split.next() else { continue; };
+                let Some(period) = split.next() else {
+                    continue;
+                };
                 let split = period.split("-").collect::<Vec<_>>();
                 if split.len() == 1 {
                     split.join("")
@@ -102,10 +117,11 @@ fn simplify(calendar: &mut Calendar) {
                 }
             };
 
-            let Some(location) = event.get_location() else { continue; };
+            let Some(location) = event.get_location() else {
+                continue;
+            };
 
             let rest = split.collect::<Vec<_>>();
-
 
             let extra = {
                 let fold_function = |acc, s: &&str| acc + s.to_owned();
@@ -121,11 +137,9 @@ fn simplify(calendar: &mut Calendar) {
 
             let mut new_summary = format!("{}: {}", period_type, period);
 
-
             if !extra.is_empty() {
                 new_summary.push_str(&format!(" ({})", &extra));
             }
-
 
             if !location.is_empty() {
                 new_summary.push_str(&format!(" [{}]", location));
@@ -145,7 +159,14 @@ mod test {
     #[test]
     fn test_parsing() {
         let calendar = Calendar::from_str(EXAMPLE_CALENDAR).unwrap();
-        assert_ne!(calendar.components.iter().filter(|e| matches!(e, CalendarComponent::Event(_))).count(), 0);
+        assert_ne!(
+            calendar
+                .components
+                .iter()
+                .filter(|e| matches!(e, CalendarComponent::Event(_)))
+                .count(),
+            0
+        );
     }
 
     #[test]
@@ -153,16 +174,39 @@ mod test {
         let mut calendar = Calendar::from_str(EXAMPLE_CALENDAR).unwrap();
         simplify(&mut calendar);
 
-        let filtered = calendar.components.into_iter().filter_map(|e| match e {
-            CalendarComponent::Event(e) => Some(e),
-            _ => None
-        }).collect::<Vec<_>>();
+        let filtered = calendar
+            .components
+            .into_iter()
+            .filter_map(|e| match e {
+                CalendarComponent::Event(e) => Some(e),
+                _ => None,
+            })
+            .collect::<Vec<_>>();
 
-        assert_eq!(filtered.get(0).unwrap().get_summary().unwrap(), "Klausur: BWL (Nach- u. Wiederholungsklausur) [CL: 6B.452 (T)]");
-        assert_eq!(filtered.get(1).unwrap().get_summary().unwrap(), "SU: Embedded Systems (Online)");
-        assert_eq!(filtered.get(2).unwrap().get_summary().unwrap(), "SU: IT und Gesellschaft [CL: 6B.173 (T)]");
-        assert_eq!(filtered.get(18).unwrap().get_summary().unwrap(), "PÜ: Labor Embedded Systems (Ausweichtermin) [CL: 6B.158 (E-L)]");
-        assert_eq!(filtered.get(filtered.len() - 2).unwrap().get_summary().unwrap(), "Klausur: Embedded Systems (PRÄSENZ, Klausurraumplanung Studiendekanat)");
+        assert_eq!(
+            filtered.get(0).unwrap().get_summary().unwrap(),
+            "Klausur: BWL (Nach- u. Wiederholungsklausur) [CL: 6B.452 (T)]"
+        );
+        assert_eq!(
+            filtered.get(1).unwrap().get_summary().unwrap(),
+            "SU: Embedded Systems (Online)"
+        );
+        assert_eq!(
+            filtered.get(2).unwrap().get_summary().unwrap(),
+            "SU: IT und Gesellschaft [CL: 6B.173 (T)]"
+        );
+        assert_eq!(
+            filtered.get(18).unwrap().get_summary().unwrap(),
+            "PÜ: Labor Embedded Systems (Ausweichtermin) [CL: 6B.158 (E-L)]"
+        );
+        assert_eq!(
+            filtered
+                .get(filtered.len() - 2)
+                .unwrap()
+                .get_summary()
+                .unwrap(),
+            "Klausur: Embedded Systems (PRÄSENZ, Klausurraumplanung Studiendekanat)"
+        );
         assert_eq!(filtered.last().unwrap().get_summary().unwrap(),
                    "Klausur: Embedded Systems (Schreibzeitverlängerung nur für Matr.Nrn.: 699727, 693733 (50%) 676322 (25%), 645463 (25%+DINA3-Ausdruck))");
     }
@@ -173,10 +217,17 @@ mod test {
 
         reduce("Wie/Englisch", &mut calendar).unwrap();
 
-        let events = calendar.components.iter().filter(|e| matches!(e, CalendarComponent::Event(_)))
-            .map(|e| e.as_event().unwrap()).collect::<Vec<_>>();
+        let events = calendar
+            .components
+            .iter()
+            .filter(|e| matches!(e, CalendarComponent::Event(_)))
+            .map(|e| e.as_event().unwrap())
+            .collect::<Vec<_>>();
 
-        assert!(events.iter().map(|e| e.get_summary().unwrap()).all(|s| !s.contains("Wiederholungs") && !s.contains("Englisch")));
+        assert!(events
+            .iter()
+            .map(|e| e.get_summary().unwrap())
+            .all(|s| !s.contains("Wiederholungs") && !s.contains("Englisch")));
         assert_ne!(events.len(), 0);
     }
 
@@ -186,8 +237,16 @@ mod test {
 
         assert!(reduce("1/2/3/4/5/6/7/8/9/10", &mut calendar).is_ok());
         assert!(reduce("1/2/3/4/5/6/7/8/9/10/", &mut calendar).is_ok());
-        assert!(reduce("1/2/3/4/5/6/7/8/9/10/11", &mut calendar).is_err());
-        assert!(reduce("1/2/3/4/5/6/7/8/9/10/11/", &mut calendar).is_err());
+        assert!(reduce(
+            "1/2/3/4/5/6/7/8/9/10/11/12/13/14/15/16/17/18/19/20",
+            &mut calendar
+        )
+        .is_ok());
+        assert!(reduce(
+            "1/2/3/4/5/6/7/8/9/10/11/12/13/14/15/16/17/18/19/20/21",
+            &mut calendar
+        )
+        .is_err());
         assert!(reduce("", &mut calendar).is_ok());
     }
 }
